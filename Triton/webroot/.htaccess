@@ -1,0 +1,5 @@
+#http://httpd.apache.org/docs/current/mod/code.html#errordocument
+
+ErrorDocument 404 /javascript/kmom10/Triton/webroot/404.php
+# directa om till start, om man försöker nå index.
+DirectoryIndex /javascript/kmom10/Triton/webroot/start.php
