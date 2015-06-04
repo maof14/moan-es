@@ -3,3 +3,22 @@
 body {
 	padding-top: 50px;
 }
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #FFF;
+    background-color: #FF704D;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFF;
+}
+
+.navbar-inverse, .navbar-collapse {
+	background-color: #FF3300;
+	border-color: #FF704D;
+}
+
+.navbar-inverse .navbar-brand  {
+	color: #FFF;
+	font-size: 24px;
+}

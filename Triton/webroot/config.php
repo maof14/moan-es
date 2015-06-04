@@ -33,6 +33,9 @@ session_start();
  * @return Boolean indicating if user is online.
  */
 
+// finurligt för att gömma menyn, om man vill det. Och låta kontroll med $.ajax ske på denna. 
+// $_SESSION['hideMenu'] = false;
+
 function checkLogin() {
 	if(isset($_SESSION['user'])) {
 		return true;
@@ -94,13 +97,17 @@ $menu = array(
 		'text' => 'Start',
 		'url' => 'start.php'
 	],
+	'products' => [
+		'text' => 'Products',
+		'url' => 'products.php'
+	],
 	'examples' => [
 		'text' => 'Examples',
 		'url' => 'examples.php'
 	],
-	'products' => [
-		'text' => 'Products',
-		'url' => 'products.php'
+	'contact' => [
+		'text' => 'Contact', 
+		'url' => 'contact.php'
 	],
 	'about' => [
 		'text' => 'About',

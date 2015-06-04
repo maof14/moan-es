@@ -33,7 +33,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="start.php">MOAN Enterprises Solutions</a>
+					<a class="navbar-brand" href="start.php">MOAN Enterprise Solutions</a>
 		        </div>
 				<?=$navmenu?>
 			</div>

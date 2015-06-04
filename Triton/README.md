@@ -1,4 +1,4 @@
-MOAN ES
+moan-es
 ============
 
 This repository represents a product showcase page. The project uses Triton-base.
