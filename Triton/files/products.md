@@ -1,6 +1,6 @@
 # Products
 
-What can we do for you?
+<p class='lead'>What can we do for you?</p>
 
 ### Excel SAP Ribbon Add-In
 
