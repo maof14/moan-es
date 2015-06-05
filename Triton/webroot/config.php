@@ -33,9 +33,6 @@ session_start();
  * @return Boolean indicating if user is online.
  */
 
-// finurligt för att gömma menyn, om man vill det. Och låta kontroll med $.ajax ske på denna. 
-// $_SESSION['hideMenu'] = false;
-
 function checkLogin() {
 	if(isset($_SESSION['user'])) {
 		return true;
@@ -43,6 +40,17 @@ function checkLogin() {
 		return false;
 	}
 }
+
+$flash = new CFlash();
+
+/** 
+ *
+ * if want to hide site menu - set to session. 
+ *
+ */
+
+// finurligt för att gömma menyn, om man vill det. Och låta kontroll med $.ajax ske på denna. 
+// $_SESSION['hideMenu'] = false;
 
 /* 
 
@@ -75,7 +83,7 @@ $triton['database']['dsn']               = 'sqlite:'.$dbpath; // 'mysql:host=loc
 // using compiled css instead of less when in "production"
 $triton['stylesheets'][] = 'style/bootstrap.min.css';
 $triton['stylesheets'][] = 'style/code-example.css';
-$triton['stylesheet'] = 'style/style.css';
+$triton['stylesheet'] 	 = 'style/style.css';
 // $triton['stylesheets'][] = 'style/font-awesome-4.3.0/css/font-awesome.min.css';
 // $triton['favicon'] = 'favicon.ico';
 
@@ -105,18 +113,18 @@ $menu = array(
 		'text' => 'Examples',
 		'url' => 'examples.php'
 	],
-	'contact' => [
-		'text' => 'Contact', 
-		'url' => 'contact.php'
-	],
 	'about' => [
 		'text' => 'About',
 		'url' => 'about.php'
 	],
+	'contact' => [
+		'text' => 'Contact', 
+		'url' => 'contact.php'
+	], 
 	'login' => [
-		'text' => 'Log in',
+		'text' => 'Log in', 
 		'url' => 'login.php'
-	]
+	],
 );
 
 $triton['navmenu'] = CNavigation::GenerateMenu($menu, 'collapse navbar-collapse');

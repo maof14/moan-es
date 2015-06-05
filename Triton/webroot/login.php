@@ -14,20 +14,65 @@ include(__DIR__ . '/config.php');
 $user = new CUser($triton['database']);
 
 if(isset($_POST['login'])) {
-	$username = $_POST['txtusername'];
-	$password = $_POST['txtpassword'];
-	$user->login($username, $password);
+	$username = $_POST['email'];
+	$password = $_POST['password'];
+	if($user->login($username, $password)) {
+		$action = 'loginsuccess';
+		$flash->setMessage('You successfully logged in.', ['alert', 'alert-success']);
+	} else {
+		$action = 'loginfailed';
+		$flash->setMessage('Wrong credentials. Try again.', ['alert', 'alert-danger']);
+	}
+	// den här blockade flashen. troligtvis för att det blev två redirects.. 
+	// header("Location: login.php?action=$action");
 } elseif(isset($_POST['logout'])) {
 	$user->logout();
 }
 
-$prompt = $user->getLoginPrompt();
+$loginPage = null;
 
-$triton['title'] = "My pages";
+if(checkLogin() == false) {
+	$loginPage = <<<EOD
+<h1>Log in</h1>
+<p class='lead'>Log in here.</p>
+<form class="form-signin" method="post">
+	<div class='row'>
+		<div class='form-group col-md-3'>
+			<h1 class='form-signin-header'>Sign in</h1>
+			<input type="text" id="email" name="email" class="form-control" placeholder="Email" />
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+		</div>
+	</div>
+	<div class='row'>
+		<div class='form-group col-md-3'>
+			<input type="submit" id='login' name='login' value="Sign in" class="btn btn-lg btn-primary btn-block" />
+		</div>
+	</div>
+</form>	
+EOD;
+} else {
+	$loginPage = <<<EOD
+<h1>Log out</h1>
+<p class='lead'>Log out here.</p>
+<form class="form-signin" method="post">
+	<p>You are currently logged in as user: <strong>{$user->getUsername()}</strong></p>
+	<div class='row'>
+		<div class='form-group col-md-3'>
+			<input type="submit" id='logout' name='logout' value="Sign out" class="btn btn-lg btn-primary btn-block" />
+		</div>
+	</div>
+</form>	
+EOD;
+}
+
+
+
+$triton['title'] = "Login";
 
 $triton['main'] = <<<EOD
-$prompt
-{$user->getStatus()}
+
+{$loginPage}
+
 EOD;
 
 // slutligen - lämna över detta till renderingen av sidan. 
