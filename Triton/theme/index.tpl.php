@@ -39,7 +39,7 @@
 			</div>
 		</nav>
 	</div>
-	<div id='main' class='container'>
+	<div id='container' class='container'>
 		<!-- flash message, if any. -->
 		<?php if($flash->hasMessage() == true) echo $flash->getMessage(); ?>
 		<!-- main content -->

@@ -14,7 +14,7 @@ $page = null;
 if(isset($_SESSION['user'])) {
 	$page = <<<EOD
 <form class="form-newpost" method="post">
-	<div= id='editor'>
+	<div id='editor'>
 	<div class='row'>
 		<div class="form-group col-md-6">
 			<label for='title'>Title</label>
@@ -22,11 +22,14 @@ if(isset($_SESSION['user'])) {
 			<label for='description'>Description</label>
 			<input type='text' id='description' name='description' class='form-control' placeholder='Short description of example' />
 			<label for='text'>Text</label>
-			<textarea v-model='input' debounce='300' id="text" name="text" class="form-control" placeholder="Your example article" cols="10" rows="10"></textarea>			<div class='input-group'>
+			<textarea v-model='input' debounce='300' id="text" name="text" class="form-control" placeholder="Your example article" cols="10" rows="20"></textarea>			<div class='input-group'>
 		</div>
 	</div>
-	<div class='col-md-6' id='markdown-preview' v-html='input | marked'>
-	<!-- add a border here -->
+	<div class='col-md-6'>
+		<label for='markdown-preview'>Markdown preview</label>
+		<div id='markdown-preview' v-html='input | marked'>
+			<!-- add a border here -->
+		</div>
 	</div>
 	</div>
 	<div class='row'>
@@ -46,23 +49,26 @@ EOD;
 	throw new Exception('Nope. You can\'t be here. Sorry!');
 }
 
-$db = new CDatabase($triton['database']);
+$example = new CExample($triton['database']);
 
 if(isset($_POST['submit'])) {
-	$params[] = $_SESSION['user']->getId();
-	$params[] = $_SESSION['user']->getUsername();
-	// $params[] = slugify($_POST['title']); // slugify function. Need to create one. Where?
-	$params[] = $_POST['title'];
-	$params[] = $_POST['text'];
-	$params[] = date(DATE_RFC822);
-	$params[] = $_POST['description'];
+	$newexample = [
+		'userid' => $_SESSION['user']->getId(),
+		'username' => $_SESSION['user']->getUsername(),
+		'slug' => $example->slugify($_POST['title']),
+		'title' => $_POST['title'],
+		'text' => $_POST['text'],
+		'date' => date(DATE_RFC822),
+		'description' => $_POST['description']
+	];
 
-	$sql = "INSERT INTO examples(userid, username, title, text, created, description) VALUES(?, ?, ?, ?, ?, ?)"; // add slug later.
-	if($db->ExecuteQuery($sql, $params)) {
-		return header('Location: examples.php');
-	} else {
-		throw new Exception('Unknown error inserting to database.');
-	}
+	echo $example->create($newexample);
+
+	// if($db->ExecuteQuery($sql, $params)) {
+	// 	return header('Location: examples.php');
+	// } else {
+	// 	throw new Exception('Unknown error inserting to database.');
+	// }
 }
 
 $triton['title'] = 'Create example';

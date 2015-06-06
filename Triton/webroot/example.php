@@ -13,8 +13,9 @@ include(__DIR__ . '/config.php');
 $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
 
 $db = new CDatabase($triton['database']);
-$sql = "SELECT * FROM examples WHERE slug = ?";
-$example = $db->executeSelectQueryAndFetch($sql, array($slug));
+
+$example = new CExample($triton['database']);
+$example->findFirst(['slug' => $slug]);
 
 if(!isset($slug) || count($example) == 0) {
 	header('Location: 404.php');
@@ -23,9 +24,6 @@ if(!isset($slug) || count($example) == 0) {
 $triton['title'] = "Example: {$example->title}";
 
 $article = CTextFilter::doFilter($example->text, 'markdown');
-
-
-// hur gör man här då. Generera fram en string som man sätter där nere?
 
 $triton['main'] = <<<EOD
 {$article}
