@@ -1,5 +1,9 @@
 /* Page styling */
 
+html, body {
+    height: 100%
+}
+
 body {
 	padding-top: 50px;
 }
@@ -44,4 +48,24 @@ body {
 
 .grey {
 	color: #777;
+}
+
+#markdown-preview {
+	min-height: 548px;
+	padding: 20px;
+	border: 1px solid #CCC;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+#container {
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -50px;
+	padding: 0 0 50px;
+}
+
+#footer {
+	height: 50px;
+	opacity: 0.8;
 }

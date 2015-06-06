@@ -50,9 +50,9 @@ EOD;
 } else {
 	$loginPage = <<<EOD
 <p class='lead'>Log out here.</p>
+<p>You are currently logged in as user: <strong>{$user->getUsername()}</strong></p>
 <p>While you're at it, want to create an <a href='newexample.php'>example tutorial</a>?
 <form class="form-signin" method="post">
-	<p>You are currently logged in as user: <strong>{$user->getUsername()}</strong></p>
 	<div class='row'>
 		<div class='form-group col-md-3'>
 			<input type="submit" id='logout' name='logout' value="Sign out" class="btn btn-lg btn-primary btn-block" />
