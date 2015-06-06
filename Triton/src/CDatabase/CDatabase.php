@@ -52,8 +52,8 @@ class CDatabase {
 		self::$numQueries++;
 
 		echo "<p>Query = <br/><pre>{$query}</pre></p><p>Num query = " . self::$numQueries . "</p><p><pre>".print_r($params, 1)."</pre></p>";
+	}
 
-		}
 	public function ExecuteSelectQueryAndFetchAll($query, $params=array(), $debug=false) {
 		if($debug) {
 			$this->debug($query, $params);
@@ -62,6 +62,7 @@ class CDatabase {
 		$this->stmt->execute($params);
 		return $this->stmt->fetchAll();
 	}
+	
 	// Only difference between above function is fetch instead of fetchAll. Intended for getting one-row results.
 	public function ExecuteSelectQueryAndFetch($query, $params=array(), $debug=false) {
 		if($debug) {

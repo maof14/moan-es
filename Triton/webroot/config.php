@@ -1,28 +1,37 @@
 <?php
 
-/* Config file!
-
-*/ 
+/**
+ *
+ * Config file. Keep in mind that this file loads before all others. 
+ * 
+ */ 
 
 error_reporting(-1);
 ini_set('display_errors', 1);
 ini_set('output_buffering', 0); // Do not buffer outputs, write directly
 
-/* 
+/** 
+ *
+ * Define Triton paths. 
+ * 
+ */
 
-Define triton paths
-*/
 define('TRITON_INSTALL_PATH', __DIR__ . '/..');
 define('TRITON_THEME_PATH', TRITON_INSTALL_PATH . '/theme/render.php');
 
-/*
-include bootstrapping funtions.
-*/
+/**
+ *
+ * Include bootstrapping functions.
+ *
+ */
+
 include(TRITON_INSTALL_PATH . '/src/bootstrap.php');
 
-/* 
-
-Start the session */
+/**
+ *
+ * Start the session 
+ *
+ */
 
 session_name(preg_replace('/[^a-z\d]/i', '', __DIR__));
 session_start();
@@ -41,34 +50,46 @@ function checkLogin() {
 	}
 }
 
+/**
+ *
+ * Create "global" flash variable. Use to display flash messages with setMessage().  
+ *
+ */
+
 $flash = new CFlash();
 
 /** 
  *
- * if want to hide site menu - set to session. 
+ * If want to hide site menu - set to session. 
  *
  */
 
-// finurligt för att gömma menyn, om man vill det. Och låta kontroll med $.ajax ske på denna. 
+// Use $.ajax() to determinate if user wants to show / hide the nav menu.
 // $_SESSION['hideMenu'] = false;
 
-/* 
-
-Create the triton variable. 
-*/ 
+/**
+ *
+ * Create the triton global variable. 
+ *
+ */ 
 
 $triton = array();
 
-/*
+/**
+ *
+ * Site wide settings. 
+ * 
+ */
 
-Site wide settings. 
-*/
 $triton['lang']			= 'en';
 $triton['title_append'] = ' | MOAN Enterprises Solutions';
 
-/* 
-* Settings for the database 
-*/
+/**
+ * 
+ * Settings for the database. Uncommented MySQL DSN - use that for production?
+ *
+ */
+
 $dbpath = realpath(TRITON_INSTALL_PATH.'/db/.htsqlite.db');
 $triton['database']['dsn']               = 'sqlite:'.$dbpath; // 'mysql:host=localhost;dbname=maof14;
 // $triton['database']['verbose'] 			 = false;
@@ -76,29 +97,52 @@ $triton['database']['dsn']               = 'sqlite:'.$dbpath; // 'mysql:host=loc
 // $triton['database']['password']       = ''; // 
 // $triton['database']['driver_options'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'");
 
-/* Theme related settings
+/** 
+ *
+ * Theme related settings.
+ *
+ */
 
-*/
+/**
+ *
+ * If LESS - use compiled for production.
+ *
+ */
 
-// using compiled css instead of less when in "production"
 $triton['stylesheets'][] = 'style/bootstrap.min.css';
 $triton['stylesheets'][] = 'style/code-example.css';
 $triton['stylesheet'] 	 = 'style/style.css';
-// $triton['stylesheets'][] = 'style/font-awesome-4.3.0/css/font-awesome.min.css';
-// $triton['favicon'] = 'favicon.ico';
 
-// custom for project - array of above and below javascript files. 
+/**
+ *
+ * Array of "above" and "below" javascript files. Above loads in head, below loads below footer. 
+ *
+ */
+
 $triton['js']['above'][] = 'js/modernizr.js';
-/* $triton['js']['above'][] = 'js/less.min.js?ts=<?=time()?>'; // forcing download. FAIL! function as string... */ 
 $triton['js']['below'][] = 'js/jquery.min.js'; // jQuery before using jQuery.. :) 
 $triton['js']['below'][] = 'js/bootstrap.min.js';
+$triton['js']['below'][] = 'js/marked.min.js'; // moved those two vue files to the js lib. 
+$triton['js']['below'][] = 'js/vue.min.js';
 $triton['js']['below'][] = 'js/main.js';
 
+/**
+ *
+ * Common header for the page. Not used in MOAN ES. 
+ *
+ */
 
 $triton['header'] = <<<EOD
 <span class='sitetitle'>MOAN Enterprise Solutions</span>
 <span class='siteslogan'>Giving accountants a break since 2011</span>
 EOD;
+
+/**
+ * 
+ *
+ * Navigation menu options as array. (To be sent to navigation generator.)
+ *
+ */
 
 $menu = array(
 	'start' => [
@@ -108,7 +152,7 @@ $menu = array(
 	'products' => [
 		'text' => 'Products',
 		'url' => 'products.php'
-	],
+	], 
 	'examples' => [
 		'text' => 'Examples',
 		'url' => 'examples.php'
@@ -120,20 +164,30 @@ $menu = array(
 	'contact' => [
 		'text' => 'Contact', 
 		'url' => 'contact.php'
-	], 
-	'login' => [
-		'text' => 'Log in', 
-		'url' => 'login.php'
-	],
+	]
 );
 
+/** 
+ *
+ *
+ * Generate the navigation menu for the page.
+ *
+ */
+
 $triton['navmenu'] = CNavigation::GenerateMenu($menu, 'collapse navbar-collapse');
+
+
+/**
+ *
+ * Common header for the page. 
+ *
+ */
 
 $triton['footer'] = <<<EOD
 <nav class='navbar navbar-default navbar-fixed-bottom'>
 			<div class='container'>
 <footer>
-<p class="navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton.</p>
+<p class="navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton. <a href='login.php'>Admin page</a>.</p>
 </footer>
 </div>
 </nav>

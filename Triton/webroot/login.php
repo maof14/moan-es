@@ -23,8 +23,6 @@ if(isset($_POST['login'])) {
 		$action = 'loginfailed';
 		$flash->setMessage('Wrong credentials. Try again.', ['alert', 'alert-danger']);
 	}
-	// den här blockade flashen. troligtvis för att det blev två redirects.. 
-	// header("Location: login.php?action=$action");
 } elseif(isset($_POST['logout'])) {
 	$user->logout();
 }
@@ -33,7 +31,6 @@ $loginPage = null;
 
 if(checkLogin() == false) {
 	$loginPage = <<<EOD
-<h1>Log in</h1>
 <p class='lead'>Log in here.</p>
 <form class="form-signin" method="post">
 	<div class='row'>
@@ -52,8 +49,8 @@ if(checkLogin() == false) {
 EOD;
 } else {
 	$loginPage = <<<EOD
-<h1>Log out</h1>
 <p class='lead'>Log out here.</p>
+<p>While you're at it, want to create an <a href='newexample.php'>example tutorial</a>?
 <form class="form-signin" method="post">
 	<p>You are currently logged in as user: <strong>{$user->getUsername()}</strong></p>
 	<div class='row'>
@@ -65,12 +62,10 @@ EOD;
 EOD;
 }
 
-
-
-$triton['title'] = "Login";
+$triton['title'] = 'Admin page';
 
 $triton['main'] = <<<EOD
-
+<h1>Administrator page</h1>
 {$loginPage}
 
 EOD;
