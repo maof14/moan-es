@@ -1,11 +1,12 @@
 <?php 
 
-/* render content to theme
-*/ 
+/** 
+ *
+ * Render content to theme.
+ *
+ */ 
 
 // Extract the data array to variables for easier access in the template files.
-
-
 extract($triton);
 
 // include the template funtions.

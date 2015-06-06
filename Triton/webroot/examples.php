@@ -13,7 +13,7 @@ include(__DIR__ . '/config.php');
 $triton['title'] = "Example articles";
 
 $db = new CDatabase($triton['database']);
-$sql = "SELECT * FROM examples ORDER BY created LIMIT 0, 10"; // Måste ha paginering. På något sätt. Kanske en klass som plockar fram det. Och kanske en klass för inlägg som fiskar fram sluggen liksom. Och kanske även breadcrumbs.. Så den kan länka tillbaka till inläggen osv. Det är bra. Men fy fan jobbigt, sitta och göra exempel alltså. Hahahha. 
+$sql = "SELECT * FROM examples ORDER BY created LIMIT 0, 10"; // add paginering. Custom class for that?
 $examples = $db->executeSelectQueryAndFetchAll($sql);
 
 $html = "<div class='examples'>";
@@ -33,7 +33,7 @@ $html .= "</div>";
 
 $triton['main'] = <<<EOD
 <h1>Examples</h1>
-<p class='lead'>On this page, you can find some code examples.</p>
+<p class='lead'>On this page, you can find code example tutorials. Click on an article to learn more.</p>
 {$html}
 EOD;
 

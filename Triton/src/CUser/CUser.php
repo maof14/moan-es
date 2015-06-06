@@ -9,12 +9,16 @@ class CUser {
 	private $email;
 	private $name;
 	private $created;
-	// private $text;
 	private $isAuthenticated;
-
 	private $db;
 
-	// $id - if one would want to look at another user. For later. 
+	/**
+	 *
+	 * Constructor for the class.
+	 * @param array $database with database DSN.
+	 *
+	 */
+
 	public function __construct($database) {
 		$this->db = new CDatabase($database);
 		if(isset($_SESSION['user'])) {
@@ -27,6 +31,7 @@ class CUser {
 			$this->isAuthenticated = false;
 		}
 	}
+
 	/**
 	 *
 	 * Function to login the user.
@@ -35,6 +40,7 @@ class CUser {
 	 *
 	 */
 	// snyggt alltså. Kl 00:07, efter 3 bärs och lite till. :)) 
+
 	public function login($email, $password) {
 		$sql = "SELECT * FROM users WHERE email = ?";
 		$params[] = $email;
@@ -63,6 +69,7 @@ class CUser {
 	 * @return void.
 	 *
 	 */
+
 	public function logout() {
 		$this->isAuthenticated = false;
 		unset($_SESSION['user']);
@@ -72,17 +79,42 @@ class CUser {
 
 	/**
 	 *
+	 * Function to return the userid of the user.
+	 * @return string the userid. 
+	 */
+
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 *
 	 * Function to return the username of the user.
 	 * @return string the username. 
 	 */
+
 	public function getUsername() {
 		return $this->username;
 	}
+
+	/**
+	 *
+	 * Function to return if user is authenticated.
+	 * @return bool user authenticated.
+	 *
+	 */
 
 	public function isAuthenticated() {
 		return $this->isAuthenticated;
 	}
 
+	/**
+	 *
+	 * Function to get link to Gravatar avatar.
+	 * @return string link to Gravatar.
+	 *
+	 */
+	
 	public function getGravatar($size = 80) {
 		$email = $this->email;
 		$url = "http://www.gravatar.com/avatar/";
