@@ -189,6 +189,7 @@ Trait TQueryBuilder {
             . "\tVALUES\n\t("
             . $vals
             . ");\n";
+        return $this;
     }
 
 
@@ -201,8 +202,9 @@ Trait TQueryBuilder {
      * @param array  $values  to update or empty if $columns has bot columns and values.
      * @param array  $where   limit which rows are updated.
      *
-     * @return void
+     * @return $this to be able to call more functions to it. 
      */
+    
     public function update($table, $columns, $values = null, $where = null)
     {
         // If $values is string, then move that to $where
