@@ -58,17 +58,15 @@ if(isset($_POST['submit'])) {
 		'slug' => $example->slugify($_POST['title']),
 		'title' => $_POST['title'],
 		'text' => $_POST['text'],
-		'date' => date(DATE_RFC822),
+		'created' => date(DATE_RFC822),
 		'description' => $_POST['description']
 	];
 
-	echo $example->create($newexample);
-
-	// if($db->ExecuteQuery($sql, $params)) {
-	// 	return header('Location: examples.php');
-	// } else {
-	// 	throw new Exception('Unknown error inserting to database.');
-	// }
+	if($example->create($newexample)) {
+		return header('Location: examples.php');
+	} else {
+		throw new Exception('Unknown error inserting to database.');
+	}
 }
 
 $triton['title'] = 'Create example';
