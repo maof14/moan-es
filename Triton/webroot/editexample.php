@@ -11,18 +11,24 @@ Detta är en sidkontroller - den ska ligga i katalogen webroot och den har som s
 include(__DIR__ . '/config.php');
 
 $page = null;
+
 if(isset($_SESSION['user'])) {
+	$id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+	$example = new CExample($triton['database']);
+	// incorporate = true;
+	$example = $example->findFirst(['id' => $id], true);
+
 	$page = <<<EOD
 <form class="form-newpost" method="post">
 	<div id='editor'>
 	<div class='row'>
 		<div class="form-group col-md-6">
 			<label for='title'>Title</label>
-			<input type="text" id="title" name="title" class="form-control" placeholder="Example title" />
+			<input type="text" id="title" name="title" class="form-control" placeholder="Example title" value='{$example->title}'/>
 			<label for='description'>Description</label>
-			<input type='text' id='description' name='description' class='form-control' placeholder='Short description of example' />
+			<input type='text' id='description' name='description' class='form-control' placeholder='Short description of example' value='{$example->description}'/>
 			<label for='text'>Text</label>
-			<textarea v-model='input' debounce='300' id="text" name="text" class="form-control" placeholder="Your example article" cols="10" rows="20"></textarea>			<div class='input-group'>
+			<textarea v-model='input' debounce='300' id="text" name="text" class="form-control" placeholder="Your example article" cols="10" rows="20">{$example->text}</textarea>			<div class='input-group'>
 		</div>
 	</div>
 	<div class='col-md-6'>
@@ -49,21 +55,18 @@ EOD;
 	throw new Exception('Nope. You can\'t be here. Sorry!');
 }
 
-$example = new CExample($triton['database']);
-
 if(isset($_POST['submit'])) {
 	$u = unserialize($_SESSION['user']);
-	$newexample = [
+	$updatedexample = [
 		'userid' => $u->getId(),
 		'username' => $u->getUsername(),
-		'slug' => $example->slugify($_POST['title']),
 		'title' => $_POST['title'],
 		'text' => $_POST['text'],
 		'created' => date(DATE_RFC822),
 		'description' => $_POST['description']
 	];
 	$u = null;
-	if($example->create($newexample)) {
+	if($example->save($updatedexample)) {
 		return header('Location: examples.php');
 	} else {
 		throw new Exception('Unknown error inserting to database.');

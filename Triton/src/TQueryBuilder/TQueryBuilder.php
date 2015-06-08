@@ -245,6 +245,8 @@ Trait TQueryBuilder {
             . "\nWHERE "
             . $where
             . "\n;\n";
+
+        return $this;
     }
 
 }
