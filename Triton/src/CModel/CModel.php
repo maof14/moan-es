@@ -33,6 +33,7 @@ abstract class CModel {
 	 *
 	 * Function to save i.e update a record.
 	 * @param array row - represents a row to be inserted to the database.
+	 * Requires $this to be incorporated. @see incorporated.
 	 */
 
 	public function save($row) {
@@ -51,11 +52,14 @@ abstract class CModel {
 	/**
 	 *
 	 * Function to delete a record.
+	 * Requires $this to be incorporated. @see incorporated.
 	 *
 	 */
 
 	public function remove() {
-
+		$where = 'id = ' . $this->id;
+		$sql = $this->delete($this->table, $where)->getSQL();
+		return $this->db->executeQuery($sql);
 	}
 
 	/**
@@ -103,12 +107,14 @@ abstract class CModel {
 					->from($this->table)
 					->where($search)
 					->getSQL();
-		$res = $this->db->ExecuteSelectQueryAndFetch($sql);
-		if($incorporate) {
-			$this->incorporate($res);
-			return $this;
+		if($res = $this->db->ExecuteSelectQueryAndFetch($sql)) {
+			if($incorporate) {
+				$this->incorporate($res);
+				return $this;
+			}
+			return $res;
 		}
-		return $res;
+		return false;
 	}
 
 	/**
