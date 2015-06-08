@@ -249,4 +249,27 @@ Trait TQueryBuilder {
         return $this;
     }
 
+    /**
+     * Build a delete-query.
+     *
+     * @param string $name    the table name.
+     * @param array  $where   limit which rows are updated.
+     *
+     * @return void
+     */
+    public function delete($table, $where = null)
+    {
+        if (isset($where)) {
+            $where = " WHERE " . $where;
+        }
+
+        $this->sql = "DELETE FROM "
+            . $this->prefix
+            . $table
+            . $where
+            . ";\n";
+            
+        return $this;
+    }
+
 }
