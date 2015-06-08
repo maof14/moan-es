@@ -2,30 +2,31 @@
 
 // CUser. restart. 
 
-class CUser extends CModel {
+class CUser {
 
+	private $id; 
+	private $username;
+	private $email;
+	private $name;
+	private $created;
 	private $isAuthenticated;
+	private $db;
 
 	/**
 	 *
 	 * Constructor for the class.
 	 * @param array $database with database DSN.
+	 *
 	 */
 
 	public function __construct($database) {
-		$this->setTargetTable('users');
-		parent::__construct($database);
-
-		// print_r($_SESSION); // visar Array (). Alltså finns den inte i session vid construct. För att session rensas någonstans INNAN detta händer. 
+		$this->db = new CDatabase($database);
 		if(isset($_SESSION['user'])) {
-			$u = unserialize($_SESSION['user']);
-			$this->id = $u->id;
-			$this->username = $u->username;
-			$this->email = $u->email;
-			$this->text = $u->text;
-			$this->created = $u->created;
-			$this->isAuthenticated = $u->isAuthenticated;
-			$u = null;
+			$this->id = $_SESSION['user']->id;
+			$this->username = $_SESSION['user']->username;
+			$this->email = $_SESSION['user']->email;
+			$this->created = $_SESSION['user']->created;
+			$this->isAuthenticated = true;
 		} else {
 			$this->isAuthenticated = false;
 		}
@@ -34,21 +35,25 @@ class CUser extends CModel {
 	/**
 	 *
 	 * Function to login the user.
-	 * @param string $email, the users email, 
-	 * @param string $password, the users password.
+	 * @param $email, the users email, $password, the users password.
 	 * @return boolean success. 
+	 *
 	 */
+	// snyggt alltså. Kl 00:07, efter 3 bärs och lite till. :)) 
 
 	public function login($email, $password) {
-		if($user = $this->findFirst(['email' => $email])) {
-			if(password_verify($password, $user->password)) {
-				$this->id = $user->id;
-				$this->username = $user->username;
-				$this->email = $user->email;
-				$this->text = $user->text;
-				$this->created = $user->created;
+		$sql = "SELECT * FROM users WHERE email = ?";
+		$params[] = $email;
+			if($res = $this->db->ExecuteSelectQueryAndFetch($sql, $params)) {
+				$this->db = null;
+				if(password_verify($password, $res->password)) {
+				$this->id = $res->id;
+				$this->username = $res->username;
+				$this->email = $res->email;
+				$this->text = $res->text;
+				$this->created = $res->created;
 				$this->isAuthenticated = true;
-				$_SESSION['user'] = serialize($this);
+				$_SESSION['user'] = $this;
 				return true;
 			} else {
 				$_SESSION = array();
@@ -61,14 +66,15 @@ class CUser extends CModel {
 	/** 
 	 *
 	 * Function to log out the user.
-	 * @return redirect.
+	 * @return void.
+	 *
 	 */
 
 	public function logout() {
 		$this->isAuthenticated = false;
 		unset($_SESSION['user']);
 		$_SESSION = array();
-		return header('Location: login.php?action=logout');
+		header('Location: login.php?action=logout');
 	}
 
 	/**
@@ -95,6 +101,7 @@ class CUser extends CModel {
 	 *
 	 * Function to return if user is authenticated.
 	 * @return bool user authenticated.
+	 *
 	 */
 
 	public function isAuthenticated() {
@@ -103,8 +110,9 @@ class CUser extends CModel {
 
 	/**
 	 *
-	 * Function to get link to Gravatar image.
-	 * @return string link to Gravatar image.
+	 * Function to get link to Gravatar avatar.
+	 * @return string link to Gravatar.
+	 *
 	 */
 	
 	public function getGravatar($size = 80) {
@@ -112,19 +120,6 @@ class CUser extends CModel {
 		$url = "http://www.gravatar.com/avatar/";
 		$default = "http://www.gravatar.com/avatar/00000000000000000000000000000000";
 		return  $url . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
-	}
-
-	/**
-	 *
-	 * Magic method to help serialize the CUser object in $_SESSION. 
-	 * @return array of members to serialize. 
-	 */
-
-	public function __sleep() {
-		foreach($this as $property => $value) {
-			$prop[] = $property;
-		}
-		return $prop;
 	}
 
 }

@@ -14,8 +14,11 @@ $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
 
 $db = new CDatabase($triton['database']);
 
+// Create model. 
 $example = new CExample($triton['database']);
-$example->findFirst(['slug' => $slug]);
+
+// Return model from creator model. 
+$example = $example->findFirst(['slug' => $slug]);
 
 if(!isset($slug) || count($example) == 0) {
 	header('Location: 404.php');

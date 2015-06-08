@@ -6,40 +6,46 @@ abstract class CModel {
 
 	private $db;
 	private $table;
+	private $dsn = array();
 
 	/**
 	 *
 	 * Constructor. 
-	 *
+	 * @param array $database dsn.
 	 */
+
 	public function __construct($database) {
+		$this->dsn = $database;
 		$this->db = new CDatabase($database);
 	}
 
 	/**
 	 *
 	 * Function to set the target table to search in. 
-	 *
+	 * @param string $table, the table in the database to use.
 	 */
+
 	public function setTargetTable($table) {
 		$this->table = $table;
 	}
 
 	/**
 	 *
-	 * Function to save a record. Need to update TQueryBuilder for that.
-	 *
+	 * Function to save i.e update a record.
+	 * @param array row - represents a row to be inserted to the database.
 	 */
 
-	public function save() {
-		$params[] = $this;
-		$sql = "UPDATE {$this->table} WHERE id = ? SET username = ?";
+	public function save($row) {
+		$columns = null;
+		$values = null;
+		$where = 'id = ' . $this->id;
+		foreach($row as $key => $val) {
+			$columns[] = $key;
+			$values[] = $val;
+		}
 
-		// if($this->db->executeQuery($sql, $params)) {
-		// 	return true;
-		// } else {
-		// 	return false;
-		// }
+		$sql = $this->update($this->table, $columns, $values, $where)->getSQL();
+		return $this->db->ExecuteQuery($sql);
 	}
 
 	/**
@@ -55,14 +61,14 @@ abstract class CModel {
 	/**
 	 *
 	 * Function to create a record. 
-	 *
+	 * @param array row - represents a row to be inserted to database. 
 	 */
 
-	public function create($example) {
+	public function create($row) {
 		$columns = null;
 		$values = null;
 
-		foreach($example as $key => $val) {
+		foreach($row as $key => $val) {
 			$columns[] = $key;
 			$values[] = $val;
 		}
@@ -77,7 +83,7 @@ abstract class CModel {
 	 * @return array of the query results.
 	 */
 	
-	public function find($search = array()) {
+	public function findAll($search = array()) {
 		$sql = $this->select()
 					->from($this->table)
 					->where($search)
@@ -88,17 +94,34 @@ abstract class CModel {
 	/**
 	 *
 	 * Function to find the first record that matches search. 
+	 * Adjusted to return for CUser model. 
 	 * @return void.
 	 */
 
-	public function findFirst($search = array()) {
+	public function findFirst($search = array(), $incorporate = false) {
 		$sql = $this->select()
-						->from($this->table)
-						->where($search)
-						->getSQL();
-		$result = $this->db->ExecuteSelectQueryAndFetch($sql);
-		foreach($result as $property => $value) {
+					->from($this->table)
+					->where($search)
+					->getSQL();
+		$res = $this->db->ExecuteSelectQueryAndFetch($sql);
+		if($incorporate) {
+			$this->incorporate($res);
+			return $this;
+		}
+		return $res;
+	}
+
+	/**
+	 *
+	 * Function to incorporate data as members of the class. 
+	 * @param stdObject data - the data to incorporate.
+	 * @return void.
+	 */
+
+	private function incorporate($data) {
+		foreach($data as $property => $value) {
 			$this->$property = $value;
 		}
 	}
+
 }

@@ -29,7 +29,7 @@ include(TRITON_INSTALL_PATH . '/src/bootstrap.php');
 
 /**
  *
- * Start the session 
+ * Start the session. 
  *
  */
 
@@ -185,10 +185,10 @@ $triton['navmenu'] = CNavigation::GenerateMenu($menu, 'collapse navbar-collapse'
 
 $triton['footer'] = <<<EOD
 <nav class='navbar navbar-default navbar-fixed-bottom'>
-			<div class='container'>
-<footer>
-<p class="navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton. <a href='login.php'>Admin page</a>.</p>
-</footer>
-</div>
+	<div class='container'>
+		<footer>
+			<p class="navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton. <a href='login.php'>Admin page</a>.</p>
+		</footer>
+	</div>
 </nav>
 EOD;

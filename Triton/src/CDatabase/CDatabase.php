@@ -1,12 +1,11 @@
 <?php
 
-/* 
-* Database wrapper. Provides a database API for the framework but hides details of implementation!! 
-*/
+/** 
+ * Database wrapper. Provides a database API for the framework but hides details of implementation!! 
+ * @todo make static for better serialization. 
+ */
 
 class CDatabase {
-	/* Members 
-	*/
 	
 	private $options; // options for PDO
 	private $db = null; // PDO Object
@@ -16,6 +15,13 @@ class CDatabase {
 	private static $queries = array(); // Save all queries for debugging
 	private static $params = array(); // Save all parameters for debugging.
 	
+
+	/**
+	 *
+	 * Constructor. Set up the class. 
+	 * @param array $options. The options needed to set up the database. 
+	 */
+
 	public function __construct($options) {
 		$default = array(
 			'dsn' => null, 
@@ -54,6 +60,15 @@ class CDatabase {
 		echo "<p>Query = <br/><pre>{$query}</pre></p><p>Num query = " . self::$numQueries . "</p><p><pre>".print_r($params, 1)."</pre></p>";
 	}
 
+	/**
+	 *
+	 * Function to execute a select-query. 
+	 * @param string $query, the SQL query to be executed.
+	 * @param array $params, the parameters to be prepared. 
+	 * @param boolean $debug, display information about queries. 
+	 * @return array of stdObject - the database results as array rows or false on fail. 
+	 */
+
 	public function ExecuteSelectQueryAndFetchAll($query, $params=array(), $debug=false) {
 		if($debug) {
 			$this->debug($query, $params);
@@ -63,7 +78,15 @@ class CDatabase {
 		return $this->stmt->fetchAll();
 	}
 	
-	// Only difference between above function is fetch instead of fetchAll. Intended for getting one-row results.
+	/**
+	 *
+	 * Function to execute a select-query. 
+	 * @param string $query, the SQL query to be executed.
+	 * @param array $params, the parameters to be prepared. 
+	 * @param boolean $debug, display information about queries. 
+	 * @return stdObject - one database result row or false on fail. 
+	 */
+
 	public function ExecuteSelectQueryAndFetch($query, $params=array(), $debug=false) {
 		if($debug) {
 			$this->debug($query, $params);
@@ -74,10 +97,10 @@ class CDatabase {
 	}
 	
 	/**
-	* Get a html representation of all queries made, for debugging and analysing purpose.
-	* 
-	* @return string with html.
-	*/
+	 * Get a html representation of all queries made, for debugging and analysing purpose.
+	 * 
+	 * @return string with html.
+	 */
 	public function Dump() {
 		$html  = '<p><i>You have made ' . self::$numQueries . ' database queries.</i></p><pre>';
 		foreach(self::$queries as $key => $val) {
@@ -87,6 +110,15 @@ class CDatabase {
 		return $html . '</pre>';
 	}
 	
+	/**
+	 *
+	 * Function to execute a query. 
+	 * @param string $query, the SQL query to be executed.
+	 * @param array $params, the parameters to be prepared. 
+	 * @param boolean $debug, display information about queries. 
+	 * @return boolean from statement on success. 
+	 */
+
 	public function ExecuteQuery($query, $params=array(), $debug=false) {
 		if($debug) {
 			$this->debug($query, $params);

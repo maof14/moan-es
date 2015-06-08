@@ -2,7 +2,11 @@
 
 class CExample extends CModel {
 
-	// dyn properties. orkar inte skriva ut de . 
+	/** 
+	 *
+	 * Constructor. Set up the parent Class. 
+	 *
+	 */
 
 	public function __construct($database) {
 		$this->setTargetTable('examples');

@@ -25,7 +25,7 @@ if(isset($_POST['login'])) {
 	}
 } elseif(isset($_POST['logout'])) {
 	$user->logout();
-}
+} 
 
 $loginPage = null;
 
@@ -67,9 +67,11 @@ $triton['title'] = 'Admin page';
 $triton['main'] = <<<EOD
 <h1>Administrator page</h1>
 {$loginPage}
-
 EOD;
 
 // slutligen - lämna över detta till renderingen av sidan. 
 include(TRITON_THEME_PATH);
 
+// echo dump($_SESSION);
+
+// dump på session här, efter login, visar session. Alltså är det någontingting som händer innan man försöker logga in. Alltså innan sidan laddas om igen, så är session nollställt. Det är bra att jag har kommit fram till det. 
