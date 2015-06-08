@@ -69,3 +69,29 @@ body {
 	height: 50px;
 	opacity: 0.8;
 }
+
+.justify {
+	text-align: justify;
+}
+
+.border {
+	border: 1px solid rgb(204, 204, 204);
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.1) inset;
+}
+
+figure {
+	display: table;
+}
+
+figcaption {
+	font-style: italic;
+	font-size: smaller;
+}
+
+.row.script-preview {
+	border-bottom: 1px dashed rgb(204, 204, 204);
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}

@@ -48,6 +48,30 @@ $(document).ready(function(){
     return false;
 }
 
+	$('.delete-example').on('click', function(){
+		var me = $(this), id = $(this).attr('example-id'); 
+		console.log(id);
+		$.ajax({
+			url: 'ajax/handle_request.php?action=delete&id=' + id,
+			type: 'get', 
+			success: function(data) {
+				if(data.success = true) {
+					removeExample(me);
+				} else {
+					console.log('Removal of example by Ajax failed. Maybe the example is not there or you are not authorized to remove.');
+				}
+			},
+			error: function(data) {
+				console.log('Unknown error removing example.');
+			}
+		});
+		return false;
+	});
+
+	var removeExample = function(example) {
+		example.parentsUntil('.examples').slideUp('normal', function(){ $(this).remove(); });		
+	}
+
 // customize
 var v = new Vue({
 	el: '#editor',
