@@ -27,7 +27,7 @@ if(isset($_SESSION['user'])) {
 	</div>
 	<div class='col-md-6'>
 		<label for='markdown-preview'>Markdown preview</label>
-		<div id='markdown-preview' v-html='input | marked'>
+		<div id='markdown-preview' v-html='input | marked' class='justify'>
 			<!-- add a border here -->
 		</div>
 	</div>

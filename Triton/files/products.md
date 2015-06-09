@@ -84,13 +84,13 @@ It couldn't be easier. Let us guide you through the steps.
 </div>
 #### Time saved example
 
-This graph represents actual data over the months of a year for one department of 25 people using the SAP Ribbon Add-In. 
+This graph represents actual data over the months of a year for one department of 25 people using the SAP Ribbon Add-In.
 
 <p>
-<figure class='border'>
-<img src='img.php?src=statisticsto2015.png' alt='Statistics graph' class='img-responsive center-block' />
-<figcaption class='text-center'>Image: Time saved, based on actual data.</figcaption>
-</figure>
+	<figure class='border'>
+		<img src='img.php?src=statisticsto2015.png' alt='Statistics graph' class='img-responsive center-block' />
+		<figcaption class='text-center'>Image: Time saved in minutes, based on actual data. The bars represent objects updated.</figcaption>
+	</figure>
 </p>
 
 Some time saved, huh!

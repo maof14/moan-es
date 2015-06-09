@@ -15,7 +15,9 @@ $filtered = CTextFilter::doFilter($fileContents, 'markdown');
 
 $triton['title'] = "Products";
 $triton['main'] = <<<EOD
+<article class='justify'>
 {$filtered}
+</article>
 EOD;
 
 // slutligen - lämna över detta till renderingen av sidan. 

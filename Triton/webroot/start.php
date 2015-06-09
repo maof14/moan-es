@@ -15,6 +15,7 @@ $startpage = new CStartpage($triton['database']);
 $triton['title'] = "Start";
 $triton['main'] = <<<EOD
 
+<article class='justify'>
 <h1>Welcome to MOAN Enterprises Solutions</h1>
 <p class='lead'>Need to save some time doing SAP work?</p>
 
@@ -34,6 +35,7 @@ $triton['main'] = <<<EOD
 		</div>
 	</div>
 <a href='#' class='skip-code-write'>Faster, please!</a>
+</article>
 EOD;
 
 // slutligen - lämna över detta till renderingen av sidan. 

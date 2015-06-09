@@ -29,7 +29,9 @@ $triton['title'] = "Example: {$example->title}";
 $article = CTextFilter::doFilter($example->text, 'markdown');
 
 $triton['main'] = <<<EOD
+<article class='justify'>
 {$article}
+</article>
 EOD;
 
 // slutligen - lämna över detta till renderingen av sidan. 

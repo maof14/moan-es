@@ -12,10 +12,11 @@ include(__DIR__ . '/config.php');
 
 $triton['title'] = "About the site";
 $triton['main'] = <<<EOD
+<article class='justify'>
 <h1>About</h1>
 <p class='lead'>What is this site all about?</p>
 <div class='row'>
-<div class='col-md-6 justify'>
+<div class='col-md-6'>
 <h2>The site</h2>
 <p>Working as an accountant, I have made countless of updates to objects in SAP. Until I found out that those can quite easily be automated.</p>
 <p>To smooth out the process of running these kinds of scripts, we at MOAN Enterprise Solutions have come up with a few tools for you to automate such repetative, but neccessary SAP tasks.</p>
@@ -26,7 +27,7 @@ $triton['main'] = <<<EOD
 <h2>Our mission</h2>
 <p>Our mission is to make our vision come true, and help you to start automating your daily repetative tasks.</p>
 </div>
-<div class='col-md-6 justify'>
+<div class='col-md-6'>
 <h2>About our developers</h2>
 <table>
 <tr rowspan=2><td class='profile-pic-width'><img src='img.php?src=10468700_10152545179440876_7498714125452152732_n.jpg&width=100' class='image-cell-spaceing img-circle' alt='Picture of Mattias'></td><td class='top-align'><h4 class='top'>Mattias Olsson</h4><p><strong>Founder, developer.</strong></p></td></tr>
@@ -36,7 +37,7 @@ $triton['main'] = <<<EOD
 </table>
 </div>
 </div>
-
+</article>
 EOD;
 
 // slutligen - lämna över detta till renderingen av sidan. 
