@@ -26,7 +26,9 @@ if(!isset($slug) || count($example) == 0) {
 
 $triton['title'] = "Example: {$example->title}";
 
-$article = CTextFilter::doFilter($example->text, 'markdown');
+$text = stripslashes($example->text);
+
+$article = CTextFilter::doFilter($text, 'markdown');
 
 $triton['main'] = <<<EOD
 <article class='justify'>

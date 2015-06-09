@@ -51,7 +51,8 @@ $(document).ready(function(){
 	$('.delete-example').on('click', function(){
 		var me = $(this), id = $(this).attr('example-id'); 
 		console.log(id);
-		$.ajax({
+		if(confirm('Are you sure you want to delete this example?')) {
+			$.ajax({
 			url: 'ajax/handle_request.php?action=delete&id=' + id,
 			type: 'get', 
 			success: function(data) {
@@ -66,6 +67,7 @@ $(document).ready(function(){
 			}
 		});
 		return false;
+		}
 	});
 
 	var removeExample = function(example) {

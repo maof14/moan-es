@@ -18,6 +18,8 @@ if(isset($_SESSION['user'])) {
 	// incorporate = true;
 	$example = $example->findFirst(['id' => $id], true);
 
+	$text = stripslashes($example->text);
+
 	$page = <<<EOD
 <form class="form-newpost" method="post">
 	<div id='editor'>
@@ -28,7 +30,7 @@ if(isset($_SESSION['user'])) {
 			<label for='description'>Description</label>
 			<input type='text' id='description' name='description' class='form-control' placeholder='Short description of example' value='{$example->description}'/>
 			<label for='text'>Text</label>
-			<textarea v-model='input' debounce='300' id="text" name="text" class="form-control" placeholder="Your example article" cols="10" rows="20">{$example->text}</textarea>			<div class='input-group'>
+			<textarea v-model='input' debounce='300' id="text" name="text" class="form-control" placeholder="Your example article" cols="10" rows="20">{$text}</textarea>			<div class='input-group'>
 		</div>
 	</div>
 	<div class='col-md-6'>
@@ -61,7 +63,7 @@ if(isset($_POST['submit'])) {
 		'userid' => $u->getId(),
 		'username' => $u->getUsername(),
 		'title' => $_POST['title'],
-		'text' => $_POST['text'],
+		'text' => addslashes($_POST['text']),
 		'created' => date(DATE_RFC822),
 		'description' => $_POST['description']
 	];
@@ -73,10 +75,10 @@ if(isset($_POST['submit'])) {
 	}
 }
 
-$triton['title'] = 'Create example';
+$triton['title'] = 'Edit example';
 $triton['main'] = <<<EOD
-<h1>Create new example</h1>
-<p class='lead'>Create new tutorial example on this page.</p>
+<h1>Edit example</h1>
+<p class='lead'>Edit an existing example on this page.</p>
 {$page}
 EOD;
 

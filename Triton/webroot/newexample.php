@@ -58,7 +58,7 @@ if(isset($_POST['submit'])) {
 		'username' => $u->getUsername(),
 		'slug' => $example->slugify($_POST['title']),
 		'title' => $_POST['title'],
-		'text' => $_POST['text'],
+		'text' => addslashes($_POST['text']),
 		'created' => date(DATE_RFC822),
 		'description' => $_POST['description']
 	];
