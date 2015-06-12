@@ -26,6 +26,8 @@ $triton['main'] = <<<EOD
 <p>Some work are really meant for robots. We firmly believe that everything that could possibly be automated, should be.</p>
 <h2>Our mission</h2>
 <p>Our mission is to make our vision come true, and help you to start automating your daily repetative tasks.</p>
+<h2>...MOAN?</h2>
+<p>Our name is an abbreviation of <strong>M</strong>attias <strong>O</strong>lsson <strong>A</strong>utomatio<strong>n</strong>.</p>
 </div>
 <div class='col-md-6'>
 <h2>About our developers</h2>

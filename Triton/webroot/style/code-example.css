@@ -5,8 +5,9 @@ body {
 }
 
 .code-example-container {
-	width: 80%;
-	height: 400px;
+	/*width: 80%;*/
+	/*height: 400px;*/
+	margin-top: 20px;
 	cursor: default;
 	user-select: none;
 	-moz-user-select: none;
@@ -141,8 +142,9 @@ code {
 }
 
 .keyword-blue {
-	color: #0000ff;
+	/* color: #0000ff; */
 	/*color: #000066;*/
+	color: #000099;
 }
 
 .keyword-green {
@@ -150,7 +152,7 @@ code {
 }
 
 .window-code-area {
-	min-height: 600px;
+	height: 600px;
 }
 
 #code-example {

@@ -8,17 +8,6 @@
 
 Using our Excel Custom Ribbon template for creating SAP Scripts, SAP automation* has never been easier, and always available when you open Excel. 
 
-##### Typical work process: 
-You have some task that is repetative. It could be for example WBS closing in Project Builder, change a date, tick a checkbox, or the creation of purchase orders etc. 
-
-You do a couple of updates manually, and realize that you will do this for weeks. 
-
-Instead of working like that, you record the steps on the first update and then insert this recorded to our Add-In template, create some variables. And adapt for variances in the objects to be updated. 
-
-Click the play button and go and do something more fun. 
-
-The best part is that you do not need to be a experienced programmer to make and maintain these kind of scripts. It's that easy, everyone can do it. 
-
 <p>
 <figure class='border'>
 <img src='img.php?src=ribbon.png' alt='Ribbon' class='img-responsive center-block' />
@@ -106,6 +95,17 @@ Let us set you up with the scripts you need - or let us *teach you* how to do cr
 * Custom error handling
 * Code exporting (for i.e GitHub)
 * Database component for use with MS Access
+
+#### Typical work process: 
+You have some task that is repetative. It could be for example WBS closing in Project Builder, change a date, tick a checkbox, or the creation of purchase orders etc. 
+
+You do a couple of updates manually, and realize that you will do this for weeks. 
+
+Instead of working like that, you record the steps on the first update and then insert this recording to our Add-In template. Create some variables and adapt for variances in the objects to be updated. 
+
+Click the play button and go and do something more fun. 
+
+The best part is that you do not need to be a experienced programmer to make and maintain these kind of scripts. It's that easy, everyone can do it. 
 
 ### Other Excel macros
 

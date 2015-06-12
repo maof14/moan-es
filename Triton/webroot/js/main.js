@@ -5,16 +5,23 @@ $(document).ready(function(){
 
 	console.log('Hello there!');
 
-	var keywords = ['Dim', 'Private', 'Public', 'As', 'For', 'Next', 'String', 'Integer', 'Double', 'Single', 'UBound', 'LBound', 'New', 'Set', 'If', 'Then', 'Else', 'End', 'ElseIf', 'Set', 'Sub', 'Function', 'Not'];
+	var keywords = ['Dim', 'Private', 'Public', 'As', 'For', 'Next', 'String', 'Integer', 'Double', 'Single', 'UBound', 'LBound', 'New', 'Set', 'If', 'Then', 'Else', 'End', 'ElseIf', 'Set', 'Sub', 'Function', 'Not', 'ByRef', 'ByVal', 'Optional', 'Boolean', 'Loop', 'Do', 'Until'];
 
-	var codeStr = "\nSub SAPMacro() \nThisWorkbook.Activate \nCells(2, 1).Select \n\n' Below is modified recording due to duplicate naming with excel. \n\nIf Not IsObject(App) Then \n\tSet SapGuiAuto = GetObject(\"SAPGUI\") \n\tSet App = SapGuiAuto.GetScriptingEngine \nEnd If \nIf Not IsObject(Con) Then \n\tSet Con = App.Children(0) \nEnd If \nIf Not IsObject(session) Then \n\tSet session = Con.Children(0) \nEnd If \nIf IsObject(WScript) Then \n\tWScript.ConnectObject session, \"on\" \n\tWScript.ConnectObject Application, \"on\" \nEnd If \n\n\t' Do any mass update here with lightning speed... \n \nEnd Sub";
+	var codeExamples = [
+		"\nSub SAPMacro() \nThisWorkbook.Activate \nCells(2, 1).Select \n\n' Below is modified recording due to duplicate naming with excel. \n\nIf Not IsObject(App) Then \n\tSet SapGuiAuto = GetObject(\"SAPGUI\") \n\tSet App = SapGuiAuto.GetScriptingEngine \nEnd If \nIf Not IsObject(Con) Then \n\tSet Con = App.Children(0) \nEnd If \nIf Not IsObject(session) Then \n\tSet session = Con.Children(0) \nEnd If \nIf IsObject(WScript) Then \n\tWScript.ConnectObject session, \"on\" \n\tWScript.ConnectObject Application, \"on\" \nEnd If \n\n\t' Do any mass update here with lightning speed... \n \nEnd Sub",
+		"\nSub SAPMain() \nThisWorkbook.Activate \nSAPConnection.initWithTransaction \"VA02\"",
+		"\n' Build a select statement for SQL with CDatabase \nPublic Function selectQuery(ByVal table As String, Optional ByRef fields As Variant, Optional ByVal distinct As Boolean) As String \n\tDim i As Integer, SQL As String \n\tSQL = \"SELECT \" \n\tIf Not IsMissing(distinct) Then \n\t\tIf distinct = True Then \n\t\t\tSQL = SQL & \"DISTINCT \" \n\t\tEnd If \n\tEnd If \n\tIf Not IsMissing(fields) Then \n\t\tIf IsArray(fields) Then \n\t\t\tFor i = 0 To UBound(fields) - 1 \n\t\t\t\tSQL = SQL & fields(i) & \", \" \n\t\t\tNext i \n\t\t\tSQL = SQL & fields(UBound(fields)) & \" \" \n\t\tElse \n\t\t\tSQL = SQL & fields & \" \" \n\t\tEnd If \n\tElse \n\t\tSQL = SQL & \"* \" \n\tEnd If \n\tSQL = SQL & \"FROM \" & table \n\tselectQuery = SQL \nEnd Function",
+		"\nSub SAPMainScript() \n \n\t' Dimensions ... \n \n\t' Get the transaction and script name from the template. \n \n\ttransaction = Cells(1, 1).Value \n\tscript = Cells(2, 7).Value \n \n\t' Initialize dependency classes \n \n\tSet stats = New CStatistics \n\tstats.init script \n\tSet timer = New CTimer \n\ttimer.init \n \n\t' Select the first cell to update in the template. \n\tCells(6, 2).Select \n \n\tSAPConnection.initWithNewSessionAndTransaction transaction \n \n\t' Setup SAP object loop \n\tDo Until IsEmpty(ActiveCell) \n \n\t\t' Execute script per object ... \n \n\tLoop \n \nEnd Sub",
+		"\nCool code example goes here."
+	];
 
-	writeCode(codeStr);
+	var random = Math.floor(Math.random() * 5) + 0;
+
+	writeCode(codeExamples[random]);
 
 	function writeCode(codeStr){
 		var charArr = codeStr.split(''), current = 0;
 		var words = codeStr.split(' '), currentWord = 0;
-		// Om man tänker såhär. Att man går igenom varje ord tills charen är ett mellanslag. Och om det ordet är något av dem i keyword, så gör en prepend + append. 
 		setInterval(function(){
 			if(current < charArr.length) {
 				if(charArr[current] === ' ') { currentWord++; }
@@ -43,7 +50,7 @@ $(document).ready(function(){
 	function in_array(needle, haystack) {
 	    var length = haystack.length;
 	    for(var i = 0; i < length; i++) {
-	        if(haystack[i] === needle || '\n' + haystack[i] === needle || '\n\t' + haystack[i] === needle || '\n\n\t' + haystack[i] === needle || '\n\n' + haystack[i] === needle) return true;
+	        if(haystack[i] === needle || '\n' + haystack[i] === needle || '\n\t' + haystack[i] === needle || '\n\n\t' + haystack[i] === needle || '\n\n' + haystack[i] === needle || '\n\t\t\t' + haystack[i] === needle || '\n\t\t' + haystack[i] === needle) return true;
 	    }
     return false;
 }

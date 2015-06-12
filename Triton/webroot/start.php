@@ -16,25 +16,33 @@ $triton['title'] = "Start";
 $triton['main'] = <<<EOD
 
 <article class='justify'>
-<h1>Welcome to MOAN Enterprises Solutions</h1>
-<p class='lead'>Need to save some time doing SAP work?</p>
+<h1>Welcome to MOAN Enterprise Solutions</h1>
+<p class='lead'>Need to save some time doing SAP and Excel work?</p>
+	<div class='row space-below'>
+		<div class='col-md-6'>
+			<h2>Fasten your seatbelts!</h2>
+			<p>We at MOAN Enterprise strive to help our customers achieve efficiency in everyday work by speeding up their SAP and Excel tasks through simple, powerful and reliable scripts.</p>
+			<p>Find out more by nagivating to our <a href='products.php'>products</a> page, or find out how easily a new script is created by checking out the <a href='examples.php'>examples</a>.</p>
+		</div>
+		<div class='col-md-6'>
+			<div class='code-example-container'>
+				<div class='window-outer-frame'>
+					<div class='title-row'><span class='window-title'><img src='img/notepad.png' alt='notepad icon' class='window-icon'/><span class='title-shadow'>Untitled - Notepad</span></span><div class='window-buttons right'><ul><li class='window-minimize'>_</li><li class='window-maximize'>&#9744;</li><li class='window-close'>X</li></ul></div></div>
+					<div class='inner-frame'>
+					<div class='window-menu-bar'><ul><li><span class='underline'>F</span>ile</li><li><span class='underline'>E</span>dit</li><li>F<span class='underline'>o</span>rmat</li><li><span class='underline'>V</span>iew</li><li><span class='underline'>H</span>elp</li></ul></div>
+						<div class='window-program-content'>
+							<div class='window-code-area'>
+								<code class='vba-code' id='code-example'>
 
-	<div class='code-example-container'> <!-- representerar container med område med kod.  -->
-		<div class='window-outer-frame'> <!-- representerar svart ytterkant runt fönstret -->
-		<div class='title-row'><span class='window-title'><img src='img/notepad.png' alt='notepad icon' class='window-icon'/><span class='title-shadow'>Untitled - Notepad</span></span><div class='window-buttons right'><ul><li class='window-minimize'>_</li><li class='window-maximize'>&#9744;</li><li class='window-close'>X</li></ul></div></div> <!-- - rad uppe -->
-			<div class='inner-frame'> <!-- representerar området där det står untitled - notepad. Vit ytterkand -->
-			<div class='window-menu-bar'><ul><li><span class='underline'>F</span>ile</li><li><span class='underline'>E</span>dit</li><li>F<span class='underline'>o</span>rmat</li><li><span class='underline'>V</span>iew</li><li><span class='underline'>H</span>elp</li></ul></div>
-				<div class='window-program-content'> <!-- representerar programmets specifika innehåll inkl "file, edit" osv  -->
-					<div class='window-code-area'> <!-- representerar själva området med kod -->
-						<code class='vba-code' id='code-example'>
-
-						</code>
+								</code>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!-- <p class='text-center'><a href='#' class='skip-code-write'>Faster, please!</a></p> -->
 		</div>
 	</div>
-<a href='#' class='skip-code-write'>Faster, please!</a>
 </article>
 EOD;
 

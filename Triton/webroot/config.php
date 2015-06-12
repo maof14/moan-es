@@ -187,7 +187,7 @@ $triton['footer'] = <<<EOD
 <nav class='navbar navbar-default navbar-fixed-bottom'>
 	<div class='container'>
 		<footer>
-			<p class="navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton. <a href='login.php'>Admin page</a>.</p>
+			<p class="left navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton, a product of MOAN Enterprise Solutions.</p><p class='right navbar-text small'><a href='login.php'>Admin page</a></p>
 		</footer>
 	</div>
 </nav>

@@ -95,3 +95,15 @@ figcaption {
 	margin-bottom: 20px;
 	padding-bottom: 20px;
 }
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.space-below {
+	margin-bottom: 25px;
+}
