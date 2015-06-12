@@ -34,8 +34,8 @@ class CDatabase {
 		$this->options = array_merge($default, $options);
 
 		try {
-			// configured for sqlite. Extra options commented out (was for mysql)
-			$this->db = new PDO($this->options['dsn']); // PDO($this->options['dsn'], $this->options['username'], $this->options['password'], $this->options['driver_options']);
+			// configured for MySQL. SQLite needs only the dsn.
+			$this->db = new PDO($this->options['dsn'], $this->options['username'], $this->options['password'], $this->options['driver_options']);
 		}
 		catch(Exception $e) {
 			throw new PDOException('Could not connect to database, hiding connection details.');

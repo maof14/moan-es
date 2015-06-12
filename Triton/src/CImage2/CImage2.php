@@ -24,8 +24,8 @@ class CImage2 {
 	private $filesize;
 		
 	public function __construct() {
-		$this->imgPath = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'webroot' . DIRECTORY_SEPARATOR . 'img') . DIRECTORY_SEPARATOR;
-		$this->cachePath = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'webroot' . DIRECTORY_SEPARATOR . 'cache') . DIRECTORY_SEPARATOR;
+		$this->imgPath = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public_html' . DIRECTORY_SEPARATOR . 'img') . DIRECTORY_SEPARATOR;
+		$this->cachePath = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public_html' . DIRECTORY_SEPARATOR . 'cache') . DIRECTORY_SEPARATOR;
 		$this->getArgsAndValidate();
 		$this->getImgInfo();
 		$this->calculateNewSize();

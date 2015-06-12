@@ -86,25 +86,16 @@ $triton['title_append'] = ' | MOAN Enterprises Solutions';
 
 /**
  * 
- * Settings for the database. Uncommented MySQL DSN - use that for production?
+ * Settings for the database. 
+ * Configured with MySQL. If SQLite - reconfigure CDatabase. 
  *
  */
 
-$dbpath = realpath(TRITON_INSTALL_PATH.'/db/.htsqlite.db');
-$triton['database']['dsn']               = 'sqlite:'.$dbpath; // 'mysql:host=localhost;dbname=maof14;
-// $triton['database']['verbose'] 			 = false;
-// $triton['database']['username']       = 'root'; // maof14
-// $triton['database']['password']       = ''; // 
-// $triton['database']['driver_options'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'");
+$triton['database'] = require __DIR__ . '/../db/db_details.php';
 
 /** 
  *
  * Theme related settings.
- *
- */
-
-/**
- *
  * If LESS - use compiled for production.
  *
  */
@@ -139,7 +130,6 @@ EOD;
 
 /**
  * 
- *
  * Navigation menu options as array. (To be sent to navigation generator.)
  *
  */
@@ -168,7 +158,6 @@ $menu = array(
 );
 
 /** 
- *
  *
  * Generate the navigation menu for the page.
  *
