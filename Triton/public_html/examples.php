@@ -30,7 +30,7 @@ foreach($examples as $example) {
 	} 
 	$html .= "<div class='well'>\n";
 	$html .= "<div class='media-body'>\n";
-	$html .= "<h4 class='media-heading'><a href='example.php?slug={$example->slug}'>{$example->title}</a></h4>{$adminBar}\n";
+	$html .= "<h4 class='media-heading'><a href='example.php?slug={$example->slug}' title='View this article'>{$example->title}</a></h4>{$adminBar}\n";
 	$html .= "<p>{$example->description}</p>\n";
 	$html .= "<ul class='list-inline list-unstyled small grey'>\n
 				<li><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> {$example->created}</li>\n
@@ -42,7 +42,7 @@ foreach($examples as $example) {
 $html .= "</div>";
 
 $triton['main'] = <<<EOD
-<h1>Examples</h1>
+<h1>Example articles</h1>
 <p class='lead'>On this page, you can find code example tutorials. Click on an article to learn more.</p>
 {$html}
 EOD;

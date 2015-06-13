@@ -1,8 +1,8 @@
 # moan-es
 
-This repository represents a product showcase page. The project uses Triton-base.
+This repository represents a product showcase page for a company. The project uses further development of Triton-base.
 
-Work in progress. 
+This is a almost done-work in progress. 
 
 ## Triton-base
  
@@ -20,9 +20,8 @@ The web template is initially part of a project at Blekinge Tekniska Högskola wh
  
 This software is free software and carries a MIT license.
  
-##
+## Copyright
 
- .
-..:
+.:.:.
  
 Copyright (c) 2015 Mattias Olsson, Triton, MOAN Enterprise Solutions

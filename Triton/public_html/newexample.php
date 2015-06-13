@@ -59,7 +59,7 @@ if(isset($_POST['submit'])) {
 		'slug' => $example->slugify($_POST['title']),
 		'title' => $_POST['title'],
 		'text' => addslashes($_POST['text']),
-		'created' => date(DATE_RFC822),
+		'created' => date('Y-m-d H:i:s'),
 		'description' => $_POST['description']
 	];
 	$u = null;

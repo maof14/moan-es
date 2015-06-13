@@ -64,7 +64,6 @@ if(isset($_POST['submit'])) {
 		'username' => $u->getUsername(),
 		'title' => $_POST['title'],
 		'text' => addslashes($_POST['text']),
-		'created' => date(DATE_RFC822),
 		'description' => $_POST['description']
 	];
 	$u = null;

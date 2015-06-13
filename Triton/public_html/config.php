@@ -172,11 +172,19 @@ $triton['navmenu'] = CNavigation::GenerateMenu($menu, 'collapse navbar-collapse'
  *
  */
 
+if(checkLogin()) {
+	$u = unserialize($_SESSION['user']);
+}
+
+$loggedIn = checkLogin() ? "<span class='glyphicon glyphicon-user' aria-hidden='true'></span> " . $u->username . " " : null;
+
+$u = null;
+
 $triton['footer'] = <<<EOD
 <nav class='navbar navbar-default navbar-fixed-bottom'>
 	<div class='container'>
 		<footer>
-			<p class="left navbar-text small">Copyright &copy; Mattias Olsson 2015. Powered by Triton, a product of MOAN Enterprise Solutions.</p><p class='right navbar-text small'><a href='login.php'>Admin page</a></p>
+			<p class='navbar-text small'><span class='left'>Copyright &copy; Mattias Olsson 2015. Powered by Triton, a product of MOAN Enterprise Solutions.</span><span class='right'>{$loggedIn}<a href='login.php' title='Administrative pages'><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></a></span></p>
 		</footer>
 	</div>
 </nav>

@@ -1,5 +1,4 @@
 #http://httpd.apache.org/docs/current/mod/code.html#errordocument
 
-ErrorDocument 404 /moanenterprisesolutions/Triton/webroot/404.php
-# directa om till start, om man försöker nå index.
-DirectoryIndex /moanenterprisesolutions/Triton/webroot/start.php
+ErrorDocument 404 /404.php
+DirectoryIndex /start.php

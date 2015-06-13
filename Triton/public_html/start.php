@@ -16,13 +16,17 @@ $triton['title'] = "Start";
 $triton['main'] = <<<EOD
 
 <article class='justify'>
-<h1>Welcome to MOAN Enterprise Solutions</h1>
-<p class='lead'>Need to save some time doing SAP and Excel work?</p>
+<div class='jumbotron'>
+<h1>Well hello there!</h1>
+<p>Welcome to MOAN Enterprise. Using our Excel Add-in tools, you will get your everyday SAP tasks done in no-time.</p>
+<p><a class="btn btn-primary btn-lg" href="products.php" role="button">Find out more</a>
+</div>
+<!-- <p class='lead'>Need to save some time doing SAP and Excel work?</p> -->
 	<div class='row space-below'>
 		<div class='col-md-6'>
 			<h2>Fasten your seatbelts!</h2>
 			<p>We at MOAN Enterprise strive to help our customers achieve efficiency in everyday work by speeding up their SAP and Excel tasks through simple, powerful and reliable scripts.</p>
-			<p>Find out more by nagivating to our <a href='products.php'>products</a> page, or find out how easily a new script is created by checking out the <a href='examples.php'>examples</a>.</p>
+			<p>Find out more by navigating to our <a href='products.php'>products</a> page, or find out just how easily a new script is created by checking out the <a href='examples.php'>examples</a>.</p>
 		</div>
 		<div class='col-md-6'>
 			<div class='code-example-container'>

@@ -17,6 +17,8 @@ Using our Excel Custom Ribbon template for creating SAP Scripts, SAP automation*
 
 *\*<sub>Your SAP system needs to have SAP Scripting installed and enabled. In almost all cases, it is. See the picture at the bottom of this page to see how it should look in your settings.</sub>* 
 
+<hr>
+
 #### Running the scripts
 
 It couldn't be easier. Let us guide you through the steps.
@@ -71,6 +73,7 @@ It couldn't be easier. Let us guide you through the steps.
 
 	</div>
 </div>
+
 #### Time saved example
 
 This graph represents actual data over the months of a year for one department of 25 people using the SAP Ribbon Add-In.
@@ -84,17 +87,23 @@ This graph represents actual data over the months of a year for one department o
 
 Some time saved, huh!
 
+<hr>
+
 #### Customize your solution
 
 Let us set you up with the scripts you need - or let us *teach you* how to do create them. 
 
+<hr>
+
 #### Components in detail
 
 * Usage statistics overview
-* Customization
+* Customization according to your needs
 * Custom error handling
 * Code exporting (for i.e GitHub)
 * Database component for use with MS Access
+
+<hr>
 
 #### Typical work process: 
 You have some task that is repetative. It could be for example WBS closing in Project Builder, change a date, tick a checkbox, or the creation of purchase orders etc. 
@@ -103,9 +112,11 @@ You do a couple of updates manually, and realize that you will do this for weeks
 
 Instead of working like that, you record the steps on the first update and then insert this recording to our Add-In template. Create some variables and adapt for variances in the objects to be updated. 
 
-Click the play button and go and do something more fun. 
+Click the play button and go and do something that actually requires a human :). 
 
 The best part is that you do not need to be a experienced programmer to make and maintain these kind of scripts. It's that easy, everyone can do it. 
+
+<hr>
 
 ### Other Excel macros
 
@@ -117,7 +128,7 @@ Perhaps one of the following:
 * create graphs automatically
 * generate reports based on data
 * compile information
-* synchronize MS Database with Excel
+* synchronize MS Access database with Excel
 * update MS Access database records or fetch information
 * generate templates
 * auto-send mails in Outlook
@@ -127,6 +138,8 @@ Perhaps one of the following:
 
 The possibilities of automation is limitless. 
 
+<hr>
+
 ## Websites
 
 Perhaps you need a website? To promote a product or a informal website for your company.
@@ -134,6 +147,9 @@ Perhaps you need a website? To promote a product or a informal website for your 
 We can help you out with creating a website using our web template, or using a framework (Phalcon etc.) or CMS (Wordpress etc.) of your choice.
 
 Head over to [contact](contact.php) for more information on how to contact us.
+
+<hr> 
+
 <p>
 <figure class='border'>
 <img src='img.php?src=scriptinginstalled.png&amp;width=550' alt='Scripting enabled' class='img-responsive center-block' />

@@ -65,7 +65,7 @@ EOD;
 $triton['title'] = 'Admin page';
 
 $triton['main'] = <<<EOD
-<h1>Administrator page</h1>
+<h1>Administrative pages</h1>
 {$loginPage}
 EOD;
 
