@@ -1,4 +1,25 @@
 #http://httpd.apache.org/docs/current/mod/code.html#errordocument
 
-ErrorDocument 404 /404.php
-DirectoryIndex /start.php
+Options +FollowSymLinks
+RewriteEngine On
+# RewriteBase /moanenterprisesolutions/Triton/public_html
+RewriteBase /
+
+ErrorDocument 404 http://www.moanenterprise.com/404.php
+DirectoryIndex start.php
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^start$ ./start.php
+RewriteRule ^products$ ./products.php
+RewriteRule ^examples$ ./examples.php
+RewriteRule ^example/(.+)*$ ./example.php?slug=$1
+RewriteRule ^about$ ./about.php
+RewriteRule ^contact$ ./contact.php
+RewriteRule ^login$ ./login.php
+
+# RewriteRule ^search/(.*)$ ./search.php?query=$1
+
+
+

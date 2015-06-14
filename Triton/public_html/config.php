@@ -82,7 +82,7 @@ $triton = array();
  */
 
 $triton['lang']			= 'en';
-$triton['title_append'] = ' | MOAN Enterprises Solutions';
+$triton['title_append'] = ' | MOAN Enterprises - Excel, SAP and automation';
 
 /**
  * 
@@ -137,23 +137,23 @@ EOD;
 $menu = array(
 	'start' => [
 		'text' => 'Start',
-		'url' => 'start.php'
+		'url' => 'start'
 	],
 	'products' => [
 		'text' => 'Products',
-		'url' => 'products.php'
+		'url' => 'products'
 	], 
 	'examples' => [
 		'text' => 'Examples',
-		'url' => 'examples.php'
+		'url' => 'examples'
 	],
 	'about' => [
 		'text' => 'About',
-		'url' => 'about.php'
+		'url' => 'about'
 	],
 	'contact' => [
 		'text' => 'Contact', 
-		'url' => 'contact.php'
+		'url' => 'contact'
 	]
 );
 
@@ -184,7 +184,7 @@ $triton['footer'] = <<<EOD
 <nav class='navbar navbar-default navbar-fixed-bottom'>
 	<div class='container'>
 		<footer>
-			<p class='navbar-text small'><span class='left'>Copyright &copy; Mattias Olsson 2015. Powered by Triton, a product of MOAN Enterprise Solutions.</span><span class='right'>{$loggedIn}<a href='login.php' title='Administrative pages'><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></a></span></p>
+			<p class='navbar-text small'><span class='left'>Copyright &copy; Mattias Olsson 2015. Powered by Triton, a product of MOAN Enterprise Solutions.</span><span class='right'>{$loggedIn}<a href='login' title='Administrative pages'><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></a></span></p>
 		</footer>
 	</div>
 </nav>

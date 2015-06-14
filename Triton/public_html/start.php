@@ -17,7 +17,7 @@ $triton['main'] = <<<EOD
 
 <article class='justify'>
 <div class='jumbotron'>
-<h1>Well hello there!</h1>
+<h1>Excel in SAP, the easy way.</h1>
 <p>Welcome to MOAN Enterprise. Using our Excel Add-in tools, you will get your everyday SAP tasks done in no-time.</p>
 <p><a class="btn btn-primary btn-lg" href="products.php" role="button">Find out more</a>
 </div>

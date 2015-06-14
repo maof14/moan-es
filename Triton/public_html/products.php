@@ -13,7 +13,7 @@ include(__DIR__ . '/config.php');
 $fileContents = CFile::getFileContents('products.md');
 $filtered = CTextFilter::doFilter($fileContents, 'markdown');
 
-$triton['title'] = "Products";
+$triton['title'] = "Our products";
 $triton['main'] = <<<EOD
 <article class='justify'>
 {$filtered}
