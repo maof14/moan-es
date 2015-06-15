@@ -2,9 +2,7 @@
 
 <p class='lead'>What can we do for you?</p>
 
-## Microsoft Excel related
-
-### Excel SAP Ribbon Add-In
+## Excel SAP Ribbon Add-In
 
 Using our Excel Custom Ribbon template for creating SAP Scripts, SAP automation* has never been easier, and always available when you open Excel. 
 
@@ -146,7 +144,7 @@ Perhaps you need a website? To promote a product or a informal website for your 
 
 We can help you out with creating a website using our web template, or using a framework (Phalcon etc.) or CMS (Wordpress etc.) of your choice.
 
-Head over to [contact](contact.php) for more information on how to contact us.
+Head over to [contact](contact) for more information on how to contact us.
 
 <hr> 
 

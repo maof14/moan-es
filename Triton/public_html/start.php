@@ -26,7 +26,7 @@ $triton['main'] = <<<EOD
 		<div class='col-md-6'>
 			<h2>Fasten your seatbelts!</h2>
 			<p>We at MOAN Enterprise strive to help our customers achieve efficiency in everyday work by speeding up their SAP and Excel tasks through simple, powerful and reliable scripts.</p>
-			<p>Find out more by navigating to our <a href='products.php'>products</a> page, or find out just how easily a new script is created by checking out the <a href='examples.php'>examples</a>.</p>
+			<p>Find out more by navigating to our <a href='products'>products</a> page, or find out just how easily a new script is created by checking out the <a href='examples'>examples</a>.</p>
 		</div>
 		<div class='col-md-6'>
 			<div class='code-example-container'>

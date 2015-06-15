@@ -4,8 +4,8 @@
 	<meta charset='utf-8'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<base href="http://www.moanenterprise.com/">
-	<title><?=get_title($title)?></title>
+	<base href=<?=getBase();?>>
+	<title><?=get_title($title);?></title>
 	<?php if(isset($favicon)): ?><link rel='shortcut icon' href='<?=$favicon?>'/><?php endif; ?>
 	<?php if(isset($stylesheets)): ?>
 	<?php foreach($stylesheets as $file): ?>
@@ -34,7 +34,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">MOAN Enterprise Solutions</a>
+					<a class="navbar-brand" href="<?=getBase();?>">MOAN Enterprise Solutions</a>
 		        </div>
 				<?=$navmenu?>
 			</div>

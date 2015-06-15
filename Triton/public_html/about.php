@@ -21,7 +21,7 @@ $triton['main'] = <<<EOD
 <p>Working as an accountant, I have made countless of updates to objects in SAP. Until I found out that those can quite easily be automated.</p>
 <p>To smooth out the process of running these kinds of scripts, we at MOAN Enterprise Solutions have come up with a few tools for you to automate such repetative, yet neccessary SAP tasks.</p>
 <p>We believe that the usage of these scripts is largely unknown and want to spread the word with this website as well as helping you out with it.</p>
-<p>Check out the <a href='examples.php'>examples</a> to get started.</p>
+<p>Check out the <a href='examples'>examples</a> to get started.</p>
 <h2>Our vision</h2>
 <p>Some work are really meant for robots. We firmly believe that everything that could possibly be automated, should be.</p>
 <h2>Our mission</h2>
