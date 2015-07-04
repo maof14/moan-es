@@ -13,7 +13,7 @@ include(__DIR__ . '/config.php');
 $triton['title'] = "Example articles";
 
 $db = new CDatabase($triton['database']);
-$sql = "SELECT * FROM examples ORDER BY created DESC LIMIT 0, 10"; // add paginering. Custom class for that?
+$sql = "SELECT * FROM examples WHERE published IS NOT NULL ORDER BY created DESC LIMIT 0, 10"; // add paginering. Custom class for that?
 $examples = $db->executeSelectQueryAndFetchAll($sql);
 
 $adminBar = null;

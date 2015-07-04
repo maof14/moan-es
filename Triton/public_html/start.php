@@ -26,7 +26,10 @@ $triton['main'] = <<<EOD
 		<div class='col-md-6'>
 			<h2>Fasten your seatbelts!</h2>
 			<p>We at MOAN Enterprise strive to help our customers achieve efficiency in everyday work by speeding up their SAP and Excel tasks through simple, powerful and reliable scripts.</p>
-			<p>Find out more by navigating to our <a href='products'>products</a> page, or find out just how easily a new script is created by checking out the <a href='examples'>examples</a>.</p>
+			<p>Find out more by navigating to our <a href='products'>products</a> page, or find coding examples and more info at the <a href='examples'>examples</a> section.</p>
+			<h2>See how it works</h2>
+			<p>In this example, the Ribbon Add-In is used to set system status TECO on all items of a Sales order.</p>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/0YXybTQXnYU" frameborder="0" allowfullscreen></iframe>
 		</div>
 		<div class='col-md-6'>
 			<div class='code-example-container'>
