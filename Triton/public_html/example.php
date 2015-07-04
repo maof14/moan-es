@@ -21,7 +21,7 @@ $example = new CExample($triton['database']);
 if(!$example = $example->findFirst(['slug' => $slug])) {
 	// One of these should work. 
 	// return header('HTTP/1.0 404 Not Found');
-	return header('Location: 404.php');
+	return header('Location: ../404.php');
 }
 
 $triton['title'] = "{$example->title}";
