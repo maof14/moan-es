@@ -32,9 +32,6 @@ abstract class CModel {
 		$values = null;
 		$where = 'id = ' . $this->id;
 		foreach($row as $key => $val) {
-			if(is_null($val)) {
-				$val = 'NULL';
-			}
 			$columns[] = $key;
 			$values[] = $val;
 		}
