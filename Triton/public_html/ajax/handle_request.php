@@ -11,7 +11,7 @@ if(isset($_SESSION['user'])) {
 	// get action
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
 	// if action is delete
-	if($action = 'delete') {
+	if($action == 'delete') {
 		// get id to perform action on. 
 		$id = isset($_GET['id']) ? $_GET['id'] : null;
 		// if id is specified.
@@ -22,6 +22,22 @@ if(isset($_SESSION['user'])) {
 			if($example = $example->findFirst(['id' => $id], true)) {
 				// try remove
 				$success = $example->remove();
+			} else {
+				$success = false;
+			}
+		}
+	} elseif($action == 'publish') {
+		$id = isset($_GET['id']) ? $_GET['id'] : null;
+		if($id) {
+			// create example obj. 
+			$example = new CExample($triton['database']);
+			// if found.
+			if($example = $example->findFirst(['id' => $id], true)) {
+				$bool = !$example->published ? 1 : 0;
+				$data = [
+					'published' => $bool
+				];
+				$success = $example->save($data);
 			} else {
 				$success = false;
 			}

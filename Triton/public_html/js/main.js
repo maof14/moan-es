@@ -55,7 +55,9 @@ $(document).ready(function(){
     return false;
 }
 
-	$('.delete-example').on('click', function(){
+	$('.delete-example').on('click', function(e){
+		// do not refresh page. 
+		e.preventDefault();
 		var me = $(this), id = $(this).attr('example-id'); 
 		console.log(id);
 		if(confirm('Are you sure you want to delete this example?')) {
@@ -79,6 +81,37 @@ $(document).ready(function(){
 
 	var removeExample = function(example) {
 		example.parentsUntil('.examples').slideUp('normal', function(){ $(this).remove(); });		
+	}
+
+	$('.publish-example').on('click', function(e){
+		// do not refresh page. 
+		e.preventDefault();
+		var me = $(this), id = $(this).attr('example-id'); 
+		console.log(id);
+		$.ajax({
+			url: 'ajax/handle_request.php?action=publish&id=' + id,
+			type: 'get', 
+			success: function(data) {
+				console.log(data);
+				if(data.success = true) {
+					publishExample(me);
+				} else {
+					console.log('Example could not be published.');
+				}
+			},
+			error: function(data) {
+				console.log('Unknown error publishing example.');
+			}
+		});
+	});
+
+	var publishExample = function(example) {
+		if($(example).find('.icon-available').hasClass('glyphicon-minus')) {
+			$(example).find('.icon-available').removeClass('glyphicon-minus').addClass('glyphicon-ok');
+		} else {
+			$(example).find('.icon-available').removeClass('glyphicon-ok').addClass('glyphicon-minus');
+		}
+		return false;
 	}
 
 // customize

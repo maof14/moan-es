@@ -1,23 +1,17 @@
 <?php 
-
 // TQueryBuilder. Simple query builder for SQL. 
-
 Trait TQueryBuilder {
-
-	private $sql;
-	private $prefix;    // Prefix to attach to all table names
-
-	private $columns;
-	private $from;
-	private $where;
-	private $andWhere;
-
-	/**
+    private $sql;
+    private $prefix;    // Prefix to attach to all table names
+    private $columns;
+    private $from;
+    private $where;
+    private $andWhere;
+    /**
      * Get SQL.
      *
      * @return string as sql-query
      */
-
     public function getSQL()
     {
         if ($this->sql) {
@@ -26,13 +20,11 @@ Trait TQueryBuilder {
             return $this->build();
         }
     }
-
     /**
      * Build SQL.
      *
      * @return string as SQL query
      */
-
     protected function build()
     {
         $sql = "SELECT\n\t"
@@ -42,45 +34,39 @@ Trait TQueryBuilder {
             . ";";
         return $sql;
     }
-
-	public function select($columns = '*') {
-		$this->clear();
+    public function select($columns = '*') {
+        $this->clear();
         $this->columns = $columns;
-		return $this;
-	}
-
-	public function from($table) {
-		$this->from = 'FROM ' . $table . ' ';
-		return $this;
-	}
-
-	public function where($oneCondition = array()) {
-		$str = null;
-		foreach($oneCondition as $key => $val) {
-			if(is_string($val)) {
-				$val = '\'' . $val . '\'';
-			}
-			$str = $key . ' = ' . $val . ' ';
-		}
-		$this->where .= 'WHERE ' . $str;
-		return $this;
-	}
-
-	public function andWhere($oneCondition = array()) {
-		$str = null;
-		foreach($oneCondition as $key => $val) {
-			$str = $key . ' = ' . $val . ' ';
-		}
-		$this->andWhere .= 'AND WHERE ' . $str;
-		return $this;
-	}
-
-	/**
-	 *
-	 * Clear the queries. 
-	 * @return void.
-	 */
-
+        return $this;
+    }
+    public function from($table) {
+        $this->from = 'FROM ' . $table . ' ';
+        return $this;
+    }
+    public function where($oneCondition = array()) {
+        $str = null;
+        foreach($oneCondition as $key => $val) {
+            if(is_string($val)) {
+                $val = '\'' . $val . '\'';
+            }
+            $str = $key . ' = ' . $val . ' ';
+        }
+        $this->where .= 'WHERE ' . $str;
+        return $this;
+    }
+    public function andWhere($oneCondition = array()) {
+        $str = null;
+        foreach($oneCondition as $key => $val) {
+            $str = $key . ' = ' . $val . ' ';
+        }
+        $this->andWhere .= 'AND WHERE ' . $str;
+        return $this;
+    }
+    /**
+     *
+     * Clear the queries. 
+     * @return void.
+     */
     protected function clear()
     {
         $this->sql      = null;
@@ -93,7 +79,6 @@ Trait TQueryBuilder {
         // $this->limit    = null;
         // $this->offset   = null;
     }
-
     /**
      * Utilitie to check if array is associative array.
      *
@@ -108,7 +93,6 @@ Trait TQueryBuilder {
     {
         return (bool) count(array_filter(array_keys($array), 'is_string'));
     }
-
     /**
      * Create a proper column value arrays from incoming $columns and $values.
      *
@@ -121,27 +105,19 @@ Trait TQueryBuilder {
     {
         // If $values is null, then use $columns to build it up
         if (is_null($values)) {
-
             if ($this->isAssoc($columns)) {
-
                 // Incoming is associative array, split it up in two
                 $values = array_values($columns);
                 $columns = array_keys($columns);
-
             } else {
-
                 // Create an array of '?' to match number of columns
                 for ($i = 0; $i < count($columns); $i++) {
                     $values[] = '?';
                 }
             }
         }
-
         return [$columns, $values];
     }
-
-
-
     /**
      * Build a insert-query.
      *
@@ -154,19 +130,14 @@ Trait TQueryBuilder {
     public function insert($table, $columns, $values = null)
     {
         list($columns, $values) = $this->mapColumnsWithValues($columns, $values);
-
         if (count($columns) != count($values)) {
             throw new \Exception("Columns does not match values, not equal items.");
         }
-
         $cols = null;
         $vals = null;
-
         for ($i = 0; $i < count($columns); $i++) {
             $cols .= $columns[$i] . ', ';
-
             $val = $values[$i];
-
             if ($val == '?') {
                 $vals .= $val . ', ';
             } else {
@@ -176,10 +147,8 @@ Trait TQueryBuilder {
                     . ', ';
             }
         }
-
         $cols = substr($cols, 0, -2);
         $vals = substr($vals, 0, -2);
-
         $this->sql = "INSERT INTO "
             . $this->prefix
             . $table
@@ -191,9 +160,6 @@ Trait TQueryBuilder {
             . ");\n";
         return $this;
     }
-
-
-
     /**
      * Build an update-query.
      *
@@ -212,18 +178,13 @@ Trait TQueryBuilder {
             $where = $values;
             $values = null;
         }
-
         list($columns, $values) = $this->mapColumnsWithValues($columns, $values);
-
         if (count($columns) != count($values)) {
             throw new \Exception("Columns does not match values, not equal items.");
         }
-
         $cols = null;
-
         for ($i = 0; $i < count($columns); $i++) {
             $cols .= "\t" . $columns[$i] . ' = ';
-
             $val = $values[$i];
             if ($val == '?') {
                 $cols .= $val . ",\n";
@@ -234,9 +195,7 @@ Trait TQueryBuilder {
                     . ",\n";
             }
         }
-
         $cols = substr($cols, 0, -2);
-
         $this->sql = "UPDATE "
             . $this->prefix
             . $table
@@ -245,10 +204,8 @@ Trait TQueryBuilder {
             . "\nWHERE "
             . $where
             . "\n;\n";
-
         return $this;
     }
-
     /**
      * Build a delete-query.
      *
@@ -262,7 +219,6 @@ Trait TQueryBuilder {
         if (isset($where)) {
             $where = " WHERE " . $where;
         }
-
         $this->sql = "DELETE FROM "
             . $this->prefix
             . $table
@@ -271,5 +227,4 @@ Trait TQueryBuilder {
             
         return $this;
     }
-
 }

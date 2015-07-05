@@ -18,6 +18,8 @@ RewriteRule ^example/(.+)*$ ./example.php?slug=$1
 RewriteRule ^about$ ./about.php
 RewriteRule ^contact$ ./contact.php
 RewriteRule ^login$ ./login.php
+RewriteRule ^all-examples ./allexamples.php
+RewriteRule ^new-example ./newexample.php
 
 # RewriteRule ^search/(.*)$ ./search.php?query=$1
 

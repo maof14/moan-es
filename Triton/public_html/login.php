@@ -51,7 +51,8 @@ EOD;
 	$loginPage = <<<EOD
 <p class='lead'>Log out here.</p>
 <p>You are currently logged in as user: <strong>{$user->getUsername()}</strong></p>
-<p>While you're at it, want to create an <a href='newexample.php'>example tutorial</a>?
+<p>While you're at it, want to create an <a href='new-example'>example tutorial</a>?
+<p>Or, you can see all articles <a href='all-examples'>here</a>.</p>
 <form class="form-signin" method="post">
 	<div class='row'>
 		<div class='form-group col-md-3'>
