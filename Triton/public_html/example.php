@@ -17,16 +17,8 @@ $db = new CDatabase($triton['database']);
 // Create model. 
 $example = new CExample($triton['database']);
 
-// old solution. 
-// Return model from creator model. If that fails, return the 404-page instead. 
-// if(!$example = $example->findFirst(['slug' => $slug])) { // felaktig syntax. Men ungefär så. 
-// 	// One of these should work. 
-// 	// return header('HTTP/1.0 404 Not Found');
-// 	return header('Location: ../404.php');
-// }
-
-// find the example by RAW sql. Update to the model solution later. 
-if(!$example = $example->findByRawSQL("SELECT * FROM examples WHERE slug = '{$slug}' AND WHERE published = 1") {
+// Find the example with raw sql by slug. 
+if(!$example = $example->findByRawSQL("SELECT * FROM examples WHERE slug = '{$slug}' AND published = 1")) {
 	return header('Location: ../404.php');
 }
 

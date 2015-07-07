@@ -26,16 +26,16 @@ if(checkLogin()) {
 } else {
 	$admin = false;
 }
-
+// <a href='editexample.php?id={$example->id}'><span title='View this article' class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>
 $html = "<div class='examples'>";
 foreach($examples as $example) {
 	if($admin) {
-		$available = $example->published ? "<span title='Published' class='glyphicon glyphicon-ok' aria-hidden='true'></span>" : "<span title='Not published' class='icon-available glyphicon glyphicon-minus' aria-hidden='true'></span>";
-		$adminBar = "<span class='right top'><a href='editexample.php?id={$example->id}' class='edit-example'><span title='Edit this example' class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a> <a href='#' class='delete-example' example-id={$example->id}><span title='Remove this example' class='glyphicon glyphicon-remove' aria-hidden='true'></span></a> <a href='#' class='publish-example' example-id={$example->id}>{$available}</a></span></span>"; 
+		$available = $example->published ? "<span title='Published' class='glyphicon glyphicon-ok' aria-hidden='true'></span> <a href='example/{$example->slug}'><span title='View this article' class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>" : "<span title='Not published' class='icon-available glyphicon glyphicon-minus' aria-hidden='true'></span>";
+		$adminBar = "<span class='right top'><a href='edit-example/{$example->id}' class='edit-example'><span title='Edit this example' class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a> <a href='#' class='delete-example' example-id={$example->id}><span title='Remove this example' class='glyphicon glyphicon-remove' aria-hidden='true'></span></a> <a href='#' class='publish-example' example-id={$example->id}>{$available}</a></span></span>"; 
 	} 
 	$html .= "<div class='well'>\n";
 	$html .= "<div class='media-body'>\n";
-	$html .= "<h4 class='media-heading'><a href='example/{$example->slug}' title='View this article'>{$example->title}</a></h4>{$adminBar}\n";
+	$html .= "<h4 class='media-heading'>{$example->title}</h4>{$adminBar}\n";
 	$html .= "<p>{$example->description}</p>\n";
 	$html .= "<ul class='list-inline list-unstyled small grey'>\n
 				<li><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> {$example->created}</li>\n
