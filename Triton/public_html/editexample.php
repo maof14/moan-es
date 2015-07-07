@@ -68,7 +68,8 @@ if(isset($_POST['submit'])) {
 	];
 	$u = null;
 	if($example->save($updatedexample)) {
-		return header('Location: examples.php');
+		$flash->setMessage('Example saved!', ['alert', 'alert-success']);
+		return header("Location: ../edit-example/{$id}");
 	} else {
 		throw new Exception('Unknown error inserting to database.');
 	}
