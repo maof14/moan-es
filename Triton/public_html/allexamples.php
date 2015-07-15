@@ -1,13 +1,12 @@
 <?php 
 
-/* ** 
+/**
+ *
+ * Triton page controller to be accessed from the web root. 
+ * Used for viewing a page. Business logic in respective classes. 
+ * Requires inclusion of the config.php file, before all other actions. 
+ */ 
 
-This is triton pagecontroller
-
-Detta är en sidkontroller - den ska ligga i katalogen webroot och den har som syfte att visa upp en webbsida. 
-*/ 
-
-// config - skall alltid inkluderas (som förut)
 include(__DIR__ . '/config.php');
 
 $triton['title'] = "All examples";
@@ -17,7 +16,7 @@ if(!isset($_SESSION['user'])) {
 }
 
 $db = new CDatabase($triton['database']);
-$sql = "SELECT * FROM examples ORDER BY created DESC LIMIT 0, 10"; // add paginering. Custom class for that?
+$sql = "SELECT * FROM examples ORDER BY created DESC LIMIT 0, 10";
 $examples = $db->executeSelectQueryAndFetchAll($sql);
 
 $adminBar = null;
@@ -26,7 +25,7 @@ if(checkLogin()) {
 } else {
 	$admin = false;
 }
-// <a href='editexample.php?id={$example->id}'><span title='View this article' class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>
+
 $html = "<div class='examples'>";
 foreach($examples as $example) {
 	if($admin) {
@@ -47,11 +46,17 @@ foreach($examples as $example) {
 $html .= "</div>";
 
 $triton['main'] = <<<EOD
-<h1>All example articles</h1>
+<h1>Article management</h1>
 <p class='lead'>From this page, you can access the administrative options for the examples. Edit, delete or publish as public example.</p>
+<p>To see an unpublished article, enter edit mode for the article. You can also create a <a href='new-example'>new example</a>.</p>
 {$html}
 EOD;
 
-// slutligen - lämna över detta till renderingen av sidan. 
+/**
+ *
+ * Finally, hand over the page to the rendering phase of Triton. 
+ *
+ */
+
 include(TRITON_THEME_PATH);
 

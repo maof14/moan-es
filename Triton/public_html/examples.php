@@ -1,13 +1,12 @@
 <?php 
 
-/* ** 
+/**
+ *
+ * Triton page controller to be accessed from the web root. 
+ * Used for viewing a page. Business logic in respective classes. 
+ * Requires inclusion of the config.php file, before all other actions. 
+ */ 
 
-This is triton pagecontroller
-
-Detta är en sidkontroller - den ska ligga i katalogen webroot och den har som syfte att visa upp en webbsida. 
-*/ 
-
-// config - skall alltid inkluderas (som förut)
 include(__DIR__ . '/config.php');
 
 $triton['title'] = "Example articles";
@@ -23,7 +22,7 @@ foreach($examples as $example) {
 	$html .= "<h4 class='media-heading'><a href='example/{$example->slug}' title='View this article'>{$example->title}</a></h4>\n";
 	$html .= "<p>{$example->description}</p>\n";
 	$html .= "<ul class='list-inline list-unstyled small grey'>\n
-				<li><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> {$example->created}</li>\n
+				<li><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> " . CFunctions::getAgeString($example->created) . "</li>\n
 				<li>|</li>\n
 				<li><span class='glyphicon glyphicon-user' aria-hidden='true'></span> by {$example->username}</li>\n
 				</ul>\n";
@@ -37,6 +36,11 @@ $triton['main'] = <<<EOD
 {$html}
 EOD;
 
-// slutligen - lämna över detta till renderingen av sidan. 
+/**
+ *
+ * Finally, hand over the page to the rendering phase of Triton. 
+ *
+ */
+
 include(TRITON_THEME_PATH);
 

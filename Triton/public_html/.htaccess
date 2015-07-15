@@ -21,5 +21,6 @@ RewriteRule ^login$ ./login.php
 RewriteRule ^all-examples ./allexamples.php
 RewriteRule ^new-example ./newexample.php
 RewriteRule ^edit-example/(.+)*$ ./editexample.php?id=$1
+RewriteRule ^all-licenses ./alllicenses.php
 
 # RewriteRule ^search/(.*)$ ./search.php?query=$1

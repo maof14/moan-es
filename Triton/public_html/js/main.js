@@ -118,11 +118,32 @@ $(document).ready(function(){
 var v = new Vue({
 	el: '#editor',
 	data: {
-	input: '# hello'
+		input: '# hello'
 	},
 	filters: {
-	marked: marked
+		marked: marked
 	}
+});
+
+$('.show-createform').click(function(e){
+	e.preventDefault();
+	$('#form-create-license').toggleClass('hidden');
+});
+
+$('#form-create-license #submit').click(function(e){
+	e.preventDefault();
+	var fd = $(this).parents('form').serialize();
+	$.ajax({
+		url: 'ajax/handle_request.php?action=create-license',
+		type: 'post',
+		data: fd,
+		success: function(data){
+			console.log('License created.');
+		},
+		error: function(data){
+			console.log('Failed creating a license.');
+		}
+	});
 });
 
 });

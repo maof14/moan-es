@@ -42,6 +42,15 @@ if(isset($_SESSION['user'])) {
 				$success = false;
 			}
 		}
+	} elseif($action == 'create-license') {
+		$license = new CLicense($triton['database']);
+		$data = [
+			'companyid' => $_POST['companyid'],
+			'companyname' => $_POST['companyname'],
+			'validfrom' => $_POST['validfrom'],
+			'validto' => $_POST['validto']
+		];
+		$success = $license->createNew($data);
 	}
 }
 

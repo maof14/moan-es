@@ -1,7 +1,5 @@
 <?php 
 
-// CUser. restart. 
-
 class CUser extends CModel {
 
 	private $isAuthenticated;
@@ -11,12 +9,10 @@ class CUser extends CModel {
 	 * Constructor for the class.
 	 * @param array $database with database DSN.
 	 */
-
 	public function __construct($database) {
 		$this->setTargetTable('users');
 		parent::__construct($database);
 
-		// print_r($_SESSION); // visar Array (). Alltså finns den inte i session vid construct. För att session rensas någonstans INNAN detta händer. 
 		if(isset($_SESSION['user'])) {
 			$u = unserialize($_SESSION['user']);
 			$this->id = $u->id;
@@ -38,7 +34,6 @@ class CUser extends CModel {
 	 * @param string $password, the users password.
 	 * @return boolean success. 
 	 */
-
 	public function login($email, $password) {
 		if($user = $this->findFirst(['email' => $email])) {
 			if(password_verify($password, $user->password)) {
@@ -63,7 +58,6 @@ class CUser extends CModel {
 	 * Function to log out the user.
 	 * @return redirect.
 	 */
-
 	public function logout() {
 		$this->isAuthenticated = false;
 		unset($_SESSION['user']);
@@ -76,7 +70,6 @@ class CUser extends CModel {
 	 * Function to return the userid of the user.
 	 * @return string the userid. 
 	 */
-
 	public function getId() {
 		return $this->id;
 	}
@@ -86,7 +79,6 @@ class CUser extends CModel {
 	 * Function to return the username of the user.
 	 * @return string the username. 
 	 */
-
 	public function getUsername() {
 		return $this->username;
 	}
@@ -96,7 +88,6 @@ class CUser extends CModel {
 	 * Function to return if user is authenticated.
 	 * @return bool user authenticated.
 	 */
-
 	public function isAuthenticated() {
 		return $this->isAuthenticated;
 	}
@@ -104,25 +95,26 @@ class CUser extends CModel {
 	/**
 	 *
 	 * Function to get link to Gravatar image.
+	 * @param integer $size - the size of the picture to be returned. 
 	 * @return string link to Gravatar image.
 	 */
-	
 	public function getGravatar($size = 80) {
 		$email = $this->email;
 		$url = "http://www.gravatar.com/avatar/";
 		$default = "http://www.gravatar.com/avatar/00000000000000000000000000000000";
-		return  $url . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+		return  $url . md5(strtolower(trim($email))) . "?d=" . urlencode($default) . "&s=" . $size;
 	}
 
 	/**
 	 *
-	 * Magic method to help serialize the CUser object in $_SESSION. 
+	 * Magic method to help serialize the CUser object in $_SESSION. Excluding the db property as PHP cannot serialize PDO objects (in CModel). 
 	 * @return array of members to serialize. 
 	 */
-
 	public function __sleep() {
 		foreach($this as $property => $value) {
-			$prop[] = $property;
+			if($property != 'db') {
+				$prop[] = $property;
+			}
 		}
 		return $prop;
 	}

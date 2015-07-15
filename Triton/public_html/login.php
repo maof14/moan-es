@@ -1,13 +1,11 @@
 <?php 
 
-/* ** 
-
-This is triton pagecontroller from oophp project
-
-Detta är en sidkontroller - den ska ligga i katalogen webroot och den har som syfte att visa upp en webbsida. 
-*/ 
-
-// config - skall alltid inkluderas (som förut)
+/**
+ *
+ * Triton page controller to be accessed from the web root. 
+ * Used for viewing a page. Business logic in respective classes. 
+ * Requires inclusion of the config.php file, before all other actions. 
+ */ 
 
 include(__DIR__ . '/config.php');
 
@@ -51,8 +49,11 @@ EOD;
 	$loginPage = <<<EOD
 <p class='lead'>Log out here.</p>
 <p>You are currently logged in as user: <strong>{$user->getUsername()}</strong></p>
-<p>While you're at it, want to create an <a href='new-example'>example tutorial</a>?
-<p>Or, you can see all articles <a href='all-examples'>here</a>.</p>
+<ul class='admin-options'>
+<li><a href='all-examples'>Article management</a></li>
+<li> | </li>
+<li><a href='all-licenses'>License management</a></li>
+</ul>
 <form class="form-signin" method="post">
 	<div class='row'>
 		<div class='form-group col-md-3'>
@@ -70,9 +71,10 @@ $triton['main'] = <<<EOD
 {$loginPage}
 EOD;
 
-// slutligen - lämna över detta till renderingen av sidan. 
+/**
+ *
+ * Finally, hand over the page to the rendering phase of Triton. 
+ *
+ */
+
 include(TRITON_THEME_PATH);
-
-// echo dump($_SESSION);
-
-// dump på session här, efter login, visar session. Alltså är det någontingting som händer innan man försöker logga in. Alltså innan sidan laddas om igen, så är session nollställt. Det är bra att jag har kommit fram till det. 

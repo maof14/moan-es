@@ -1,9 +1,17 @@
 <?php 
 abstract class CModel {
+
+	/**
+	 *
+	 * Model class for all database record types. 
+	 *
+	 */
+
 	use TQueryBuilder;
-	private $db;
+	protected $db;
 	private $table;
 	private $dsn = array();
+
 	/**
 	 *
 	 * Constructor. 
@@ -13,6 +21,7 @@ abstract class CModel {
 		$this->dsn = $database;
 		$this->db = new CDatabase($database);
 	}
+
 	/**
 	 *
 	 * Function to set the target table to search in. 
@@ -21,6 +30,7 @@ abstract class CModel {
 	public function setTargetTable($table) {
 		$this->table = $table;
 	}
+
 	/**
 	 *
 	 * Function to save i.e update a record.
@@ -38,6 +48,7 @@ abstract class CModel {
 		$sql = $this->update($this->table, $columns, $values, $where)->getSQL();
 		return $this->db->ExecuteQuery($sql);
 	}
+
 	/**
 	 *
 	 * Function to delete a record.
@@ -49,6 +60,7 @@ abstract class CModel {
 		$sql = $this->delete($this->table, $where)->getSQL();
 		return $this->db->executeQuery($sql);
 	}
+
 	/**
 	 *
 	 * Function to create a record. 
@@ -64,12 +76,12 @@ abstract class CModel {
 		$sql = $this->insert($this->table, $columns, $values)->getSQL();
 		return $this->db->ExecuteQuery($sql);
 	}
+
 	/**
 	 *
 	 * Function to return array of objects. 
 	 * @return array of the query results.
 	 */
-	
 	public function findAll($search = array()) {
 		$sql = $this->select()
 					->from($this->table)
@@ -77,6 +89,7 @@ abstract class CModel {
 					->getSQL();
 		return $this->db->ExecuteSelectQueryAndFetchAll($sql);
 	}
+
 	/**
 	 *
 	 * Function to find the first record that matches search. 
@@ -98,6 +111,13 @@ abstract class CModel {
 		return false;
 	}
 
+	/**
+	 *
+	 * Function to find by regular SQL, while still maintaining the model system.
+	 * @param string $sql - the query.
+	 * @param boolean $incorporate - indicate if the class should create members.
+	 * @return $res - the result of the query.  
+	 */
 	public function findByRawSQL($sql, $incorporate = false) {
 		if($res = $this->db->ExecuteSelectQueryAndFetch($sql)) {
 			if($incorporate) {
@@ -120,4 +140,5 @@ abstract class CModel {
 			$this->$property = $value;
 		}
 	}
+
 }

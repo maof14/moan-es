@@ -178,9 +178,21 @@ figcaption {
 	background-color: rgba(255, 51, 0, 0.9);
 }
 
-/* Wells, similar to jumbootron */ 
+/* Wells, similar to Jumbotron */ 
 
 .well {
 	background-color: rgba(255, 51, 0, 0.1);
 	border: 1px solid rgba(255, 51, 0, 0.2);
+}
+
+ul.admin-options {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-transform: uppercase;
+	margin-bottom: 25px;
+}
+
+ul.admin-options li {
+	display: inline;
 }

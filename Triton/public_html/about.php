@@ -1,13 +1,12 @@
 <?php 
 
-/* ** 
+/**
+ *
+ * Triton page controller to be accessed from the web root. 
+ * Used for viewing a page. Business logic in respective classes. 
+ * Requires inclusion of the config.php file, before all other actions. 
+ */ 
 
-This is triton pagecontroller
-
-Detta är en sidkontroller - den ska ligga i katalogen webroot och den har som syfte att visa upp en webbsida. 
-*/ 
-
-// config - skall alltid inkluderas (som förut)
 include(__DIR__ . '/config.php');
 
 $triton['title'] = "About the site";
@@ -43,6 +42,11 @@ $triton['main'] = <<<EOD
 </article>
 EOD;
 
-// slutligen - lämna över detta till renderingen av sidan. 
+/**
+ *
+ * Finally, hand over the page to the rendering phase of Triton. 
+ *
+ */
+
 include(TRITON_THEME_PATH);
 

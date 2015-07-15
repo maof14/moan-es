@@ -1,9 +1,12 @@
 <?php 
+
 /**
- * This is a triton pagecontroller.
  *
- */
-// Include the essential config-file which also creates the $triton variable with its defaults.
+ * Triton page controller to be accessed from the web root. 
+ * Used for viewing a page. Business logic in respective classes. 
+ * Requires inclusion of the config.php file, before all other actions. 
+ */ 
+
 include(__DIR__ . '/config.php'); 
  
 // Do it and store it all in variables in the triton container.
@@ -19,6 +22,11 @@ EOD;
  
 // Send the 404 header 
 header("HTTP/1.0 404 Not Found");
- 
-// Finally, leave it all to the rendering phase of triton.
+
+/**
+ *
+ * Finally, hand over the page to the rendering phase of Triton. 
+ *
+ */
+
 include(TRITON_THEME_PATH);
