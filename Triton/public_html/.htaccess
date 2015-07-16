@@ -2,8 +2,8 @@
 
 Options +FollowSymLinks
 RewriteEngine On
-# RewriteBase /moanenterprisesolutions/Triton/public_html
-RewriteBase /
+RewriteBase /moanenterprisesolutions/Triton/public_html
+# RewriteBase /
 
 ErrorDocument 404 http://www.moanenterprise.com/404.php
 DirectoryIndex start.php

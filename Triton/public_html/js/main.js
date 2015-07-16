@@ -27,19 +27,7 @@ $(document).ready(function(){
 				if(charArr[current] === ' ') { currentWord++; }
 				if(in_array(words[currentWord], keywords)) {
 					$('#code-example').html($('#code-example').html() + '<span class="keyword-blue">' + charArr[current++] + '</span>');
-				} // else if(charArr[current] === '\'') {
-				// 	var comment = codeStr.substr(current, codeStr.indexOf('\n', current) - current).split('');
-				// 	var commentCurrent = 0;
-				// 	setInterval(function(){
-				// 		if(charArr[current] === ' ') { currentWord++; }
-				// 		if(commentCurrent < comment.length) {
-				// 			console.log(words[currentWord]);
-				// 			 // Ne antingen får man tänka till här. Eller så får man göra så den skriver ut kommentarer rakt av. Eller så skiter man i att ha med kommentarer. Det kan ju vara någonting. Och så har man det senare istället. Kan ju fungera alltså. 
-				// 			$('#code-example').html($('#code-example').html() + '<span class="keyword-green">' + charArr[current++] + '</span>');
-				// 			commentCurrent++;
-				// 		}
-				// 	}, 25);
-				// }
+				} 
 				else {
 					$('#code-example').html($('#code-example').html() + charArr[current++]);	
 				}
@@ -114,36 +102,61 @@ $(document).ready(function(){
 		return false;
 	}
 
-// customize
-var v = new Vue({
-	el: '#editor',
-	data: {
-		input: '# hello'
-	},
-	filters: {
-		marked: marked
-	}
-});
-
-$('.show-createform').click(function(e){
-	e.preventDefault();
-	$('#form-create-license').toggleClass('hidden');
-});
-
-$('#form-create-license #submit').click(function(e){
-	e.preventDefault();
-	var fd = $(this).parents('form').serialize();
-	$.ajax({
-		url: 'ajax/handle_request.php?action=create-license',
-		type: 'post',
-		data: fd,
-		success: function(data){
-			console.log('License created.');
+	// customize
+	var v = new Vue({
+		el: '#editor',
+		data: {
+			input: '# hello'
 		},
-		error: function(data){
-			console.log('Failed creating a license.');
+		filters: {
+			marked: marked
 		}
 	});
-});
+
+	$('.show-createform').click(function(e){
+		e.preventDefault();
+		$('#form-create-license').toggleClass('hidden');
+	});
+
+	$('#form-create-license #submit').click(function(e){
+		e.preventDefault();
+		var fd = $(this).parents('form').serialize();
+		$.ajax({
+			url: 'ajax/handle_request.php?action=create-license',
+			type: 'post',
+			data: fd,
+			success: function(data){
+				console.log('License created.');
+			},
+			error: function(data){
+				console.log('Failed creating a license.');
+			}
+		});
+	});
+
+	$('.display-search').click(function(){
+		$('#search-form').toggleClass('hidden');
+	});
+
+	$('#search-input').keyup(function(){
+		var el;
+		for(var i = 0; i < 4; i++) {
+			if($('#search-on-' + i).prop('checked') === true) {
+				el = '#search-on-' + i;
+				break;
+			}
+		}
+		$.ajax({
+			url: 'ajax/handle_request.php?action=search&searchin=' + $(el).val() + '&query=' + $(this).val(),
+			type: 'get',
+			success: function(data){
+				$('table, .pagination').remove();
+				$('.form-horizontal').append(data.output);
+			},
+			error: function(){
+				console.log('Could not fetch the data.');
+			}
+		});
+	});
 
 });

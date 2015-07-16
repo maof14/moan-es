@@ -51,6 +51,32 @@ if(isset($_SESSION['user'])) {
 			'validto' => $_POST['validto']
 		];
 		$success = $license->createNew($data);
+	} elseif($action == 'search') {
+		// lite fulingar här
+		
+		$db = new CDatabase($triton['database']);
+		$paginator = new CPaginator();
+
+		$searchin = $_GET['searchin'];
+		$query = $_GET['query'];
+
+		$sql = "SELECT * FROM licenses WHERE $searchin LIKE '%$query%'";
+		$res = $db->executeSelectQueryAndFetchAll($sql);
+
+		$headers = [
+			'id' 			=> 'Id', 
+			'companyid' 	=> 'Company id', 
+			'companyname' 	=> 'Company name', 
+			'licensekey' 	=> 'License key', 
+			'validfrom' 	=> 'Valid from', 
+			'validto' 		=> 'Valid to'
+		];
+
+		$table = $paginator->getPaginationTable($headers, $res, ['table', 'table-striped', 'table-hover'], false);
+		
+		header('Content-type: application/json');
+		echo json_encode(array('output' => [$table])); 
+		exit();
 	}
 }
 

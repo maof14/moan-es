@@ -103,7 +103,6 @@ class CLicense extends CModel {
 	 */
 	public function getCreateForm() {
 		$html = <<<EOD
-<a class='show-createform'>Show / hide form</a>
 <form class="form-horizontal hidden" id='form-create-license' method='post'>
 <fieldset>
 
@@ -154,6 +153,53 @@ class CLicense extends CModel {
 </form>
 EOD;
 		return $html;
+	}
+
+	public function getSearchForm() {
+		$html = <<<EOD
+<form class="form-horizontal hidden" id='search-form'>
+<fieldset>
+
+<!-- Form Name -->
+<legend>Search licenses</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="control-group">
+  <label class="control-label" for="search-on">Search on</label>
+  <div class="controls">
+    <label class="radio-inline" for="search-on-0">
+      <input type="radio" name="search-on" id="search-on-0" value="companyname" checked="checked">
+      Company name
+    </label>
+    <label class="radio-inline" for="search-on-1">
+      <input type="radio" name="search-on" id="search-on-1" value="licensekey">
+      License key
+    </label>
+    <label class="radio-inline" for="search-on-2">
+      <input type="radio" name="search-on" id="search-on-2" value="validfrom">
+      Valid from-date
+    </label>
+    <label class="radio-inline" for="search-on-3">
+      <input type="radio" name="search-on" id="search-on-3" value="validto">
+      Valid to-date
+    </label>
+  </div>
+</div>
+
+<!-- Search input-->
+<div class="control-group">
+  <label class="control-label" for="search-input">Search input</label>
+  <div class="controls">
+    <input id="search-input" name="search-input" type="search" placeholder="Search string" class="input-xlarge search-query">
+    <p class="help-block">Begin typing and see what you find</p>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+EOD;
+	return $html;
 	}
 
 	/**

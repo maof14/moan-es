@@ -22,7 +22,7 @@ class CPaginator {
 	 * @param string array $class - the classes to add to the table element. 
 	 * @return string $html - html table of data. 
 	 */
-	public function getPaginationTable($headers = array(), $sqlResult = array(), $class = array()) {
+	public function getPaginationTable($headers = array(), $sqlResult = array(), $class = array(), $sorting = true) {
 		$headerCount = count($headers);
 		$html = "<table class='";
 		foreach($class as $c) {
@@ -33,7 +33,11 @@ class CPaginator {
 		$html .= "<tr>";
 		foreach($headers as $key => $value) {
 			$headerKeys[] = $key;
-			$html .= "<th>{$value} " . $this->orderby($key) . "</th>\n";
+			if($sorting == true) {
+				$html .= "<th>{$value} " . $this->orderby($key) . "</th>\n";
+			} else {
+				$html .= "<th>{$value}</th>\n";
+			}
 		}
 		$html .= "</tr>\n";
 		$html .= "</thead>\n";
